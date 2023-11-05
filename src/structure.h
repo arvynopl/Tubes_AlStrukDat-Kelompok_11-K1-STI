@@ -1,14 +1,16 @@
 #ifndef structure_H
 #define structure_H
-#include "boolean.h"
+#include "../src/boolean.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 typedef char Title;
+typedef int Key;
 
 #define MaxEl 100
 #define IDX_UNDEF -1
-#define VAL_UNDEF -999
+#define INT_UNDEF -999
+#define STR_UNDEF '0'
 #define Nil 0
 
 /* ##### STRUKTUR DATA ##### */
@@ -61,11 +63,11 @@ typedef struct {
     1) playlist_nama dan 2) list (pointer) */
 typedef struct tPlaylist* Address;
 typedef struct tPlaylist {
-    Lagu lagu_playlist[MaxEl/2];
+    Lagu lagu_playlist;
     Address next;
 } LaguPlaylist;
 typedef struct {
-    Title playlist_nama;
+    Title playlist_nama[MaxEl];
     Address list;
 } NamaPlaylist;
 
