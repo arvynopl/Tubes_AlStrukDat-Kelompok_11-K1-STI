@@ -81,4 +81,15 @@ typedef struct {
 #define LIST_PLAYLIST_ID(LP, i) (LP).(*playlist + i)
 #define LIST_PLAYLIST_SIZE(LP) (LP).playlistSize
 
+typedef struct {
+    Lagu lagu_queue[MaxEl];
+    int idxHead;
+    int idxTail;
+} QueueLagu;
+
+typedef struct {
+    Lagu lagu_histori[MaxEl];
+    int idxTop;
+} HistoriLagu;
+
 #endif
