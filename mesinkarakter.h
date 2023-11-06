@@ -6,12 +6,13 @@
 
 #include "boolean.h"
 
-#define MARK '\n'
+#define MARK '.'
+
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
 
-void START(FILE *input);
+void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    I.S. : sembarang

@@ -7,17 +7,16 @@ boolean EOP;
 static FILE *pita;
 static int retval;
 
-void START(FILE *input){
-       pita = input;
+void START(){
+       pita = fopen("pitakar.txt", "r");;
        ADV();
 }
 
 void ADV(){
-       retval = fopen("pitakar.txt", "r");
-       EOP = (currentChar == MARK);
-       if (EOP){
-                CLOSE();
-       }
+    retval = fscanf(pita, "%c", &currentChar);
+        if(IsEOP()){
+            CLOSE();
+        }
 }
 
 void CLOSE(){
