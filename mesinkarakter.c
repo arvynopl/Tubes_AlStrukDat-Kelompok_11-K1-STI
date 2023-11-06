@@ -8,8 +8,8 @@ static FILE *pita;
 static int retval;
 
 void START(){
-       pita = fopen("pitakar.txt", "r");;
-       ADV();
+    pita = fopen("pitakar.txt", "r");;
+    ADV();
 }
 
 void ADV(){

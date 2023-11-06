@@ -2,7 +2,6 @@
 #include "mesinkarakter.h"
 
 int main(){
-    FILE *input = stdin;
     START();
 
     while(!IsEOP()){
