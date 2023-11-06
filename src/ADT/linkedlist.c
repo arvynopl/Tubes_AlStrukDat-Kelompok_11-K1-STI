@@ -7,26 +7,28 @@ void CreatePlaylist(NamaPlaylist *L){
     (*L).list = NULL;
 }
 
-LaguPlaylist* NewLagu(Lagu val){
-    LaguPlaylist* N;
-    N = (LaguPlaylist*) malloc(sizeof(LaguPlaylist));
-    (*N).lagu_playlist = val;
-    (*N).next = NULL;
+boolean IsEmptyPlaylist(NamaPlaylist L){
+    return L.list == NULL;
+}
 
+LaguPlaylist* NewLagu(NamaPlaylist *L, Lagu val){
+    LaguPlaylist* N = (LaguPlaylist*) malloc(sizeof(LaguPlaylist));
+    if (N != NULL){
+        (*N).lagu_playlist = val;
+        (*N).next = (*L).list;
+        (*L).list = N;   
+    }
     return N;
 }
 
-boolean IsEmptyPlaylist(NamaPlaylist L){
-    return L.playlist_nama[0] == STR_UNDEF;
-}
-
+/*
 int IndexOfPlaylist(NamaPlaylist L, Lagu val){
     Address P = L.list;
     boolean found = false;
     int i = 0;
 
     while (P != NULL && !found){
-        if (IsEqual((*P).lagu_playlist, val)){ /*Cek string nama lagu*/
+        if (IsEqual((*P).lagu_playlist, val)){ /*Cek string nama lagu*//*
             found = true;
         } else{
             i++;
@@ -40,7 +42,7 @@ int IndexOfPlaylist(NamaPlaylist L, Lagu val){
         return Nil;
     }
 }
-
+*/
 int LengthOfPlaylist(NamaPlaylist L){
     Address P = L.list;
     int ctr = 0;
@@ -78,7 +80,7 @@ void SetElmtOfPlaylist(NamaPlaylist L, int idx, Lagu val){
 }
 
 void InsertFirstPlaylist(NamaPlaylist* L, Lagu val){
-    Address P = NewNode(val);
+    Address P = NewLagu(L, val);
     if (P != NULL){
         (*P).next = (*L).list;
         (*L).list = P;
@@ -87,9 +89,9 @@ void InsertFirstPlaylist(NamaPlaylist* L, Lagu val){
 
 void InsertAtPlaylist(NamaPlaylist* L, int idx, Lagu val){
     if (idx == 0){
-        InsertFirst(L, val);
+        InsertFirstPlaylist(L, val);
     } else{
-        Address P = NewNode(val);
+        Address P = NewLagu(L, val);
         if (P != NULL){
             int ctr = 0;
             Address loc = (*L).list;
@@ -104,10 +106,10 @@ void InsertAtPlaylist(NamaPlaylist* L, int idx, Lagu val){
 }
 
 void InsertLastPlaylist(NamaPlaylist* L, Lagu val){
-    if (IsEmpty(*L)){
-        InsertFirst(L, val);
+    if (IsEmptyPlaylist(*L)){
+        InsertFirstPlaylist(L, val);
     } else{
-        Address P = NewNode(val);
+        Address P = NewLagu(L, val);
         if (P != NULL){
             Address last = (*L).list;
             while ((*last).next != Nil){
@@ -119,7 +121,7 @@ void InsertLastPlaylist(NamaPlaylist* L, Lagu val){
 }
 
 void DeleteFirstPlaylist(NamaPlaylist* L, Lagu* val){
-    if (!IsEmpty(*L)){
+    if (!IsEmptyPlaylist(*L)){
         Address P = (*L).list;
         *val = (*P).lagu_playlist;
         (*L).list = (*P).next;
@@ -129,7 +131,7 @@ void DeleteFirstPlaylist(NamaPlaylist* L, Lagu* val){
 
 void DeleteAtPlaylist(NamaPlaylist* L, int idx, Lagu* val){
     if (idx == 0){
-        DeleteFirst(L, val);
+        DeleteFirstPlaylist(L, val);
     } else{
         int ctr = 0;
         Address loc = (*L).list;
@@ -162,16 +164,81 @@ void DeleteLastPlaylist(NamaPlaylist* L, Lagu* val){
 
 NamaPlaylist ConcatPlaylist(NamaPlaylist L1, NamaPlaylist L2){
     NamaPlaylist L;
-    CreateList(&L);
+    CreatePlaylist(&L);
     Address P = L1.list;
     while (P != Nil){
-        InsertLast(&L, (*P).lagu_playlist);
+        InsertLastPlaylist(&L, (*P).lagu_playlist);
         P = (*P).next;
     }
     P = L2.list;
     while (P != Nil){
-        InsertLast(&L, (*P).lagu_playlist);
+        InsertLastPlaylist(&L, (*P).lagu_playlist);
         P = (*P).next;
     }
     return L;
 }
+
+void PrintNamaPlaylist(NamaPlaylist L){
+    int i = 0;
+    while (L.playlist_nama[i] != '\0'){
+        printf("%c", L.playlist_nama[i]);
+        i++;
+    }
+}
+
+void PrintIsiPlaylist(NamaPlaylist L){
+    Address P = L.list;
+    int i = 1;
+    while (P != NULL){
+        printf("%d. %c", i, (*P).lagu_playlist.lagu_nama[0]);
+        int j = 1;
+        while ((*P).lagu_playlist.lagu_nama[j] != '\0'){
+            printf("%c", (*P).lagu_playlist.lagu_nama[j]);
+            j++;
+        }
+        printf("\n");
+        P = (*P).next;
+        i++;
+    }
+}
+
+/*
+int main(){
+    ListPenyanyi LP;
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[0].album_id = 0;
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[0].lagu_nama[0] = 'R';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[0].lagu_nama[1] = 'A';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[0].lagu_nama[2] = 'S';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[0].lagu_nama[3] = 'A';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[0].lagu_nama[4] = '\0';    
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[1].lagu_nama[0] = 'G';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[1].lagu_nama[1] = 'A';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[1].lagu_nama[2] = 'R';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[1].lagu_nama[3] = 'A';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[1].lagu_nama[4] = 'M';
+    LP.penyanyi[0].album_penyanyi[0].lagu_album[1].lagu_nama[5] = '\0';
+    NamaPlaylist L;
+    CreatePlaylist(&L);
+    L.playlist_nama[0] = 'A';
+    L.playlist_nama[1] = 'B';
+    L.playlist_nama[2] = 'C';
+    L.playlist_nama[3] = 'D';
+    L.playlist_nama[4] = 'E';
+    L.playlist_nama[5] = '\0';
+    NewLagu(&L, LP.penyanyi[0].album_penyanyi[0].lagu_album[0]);
+    NewLagu(&L, LP.penyanyi[0].album_penyanyi[0].lagu_album[1]);
+    PrintIsiPlaylist(L);
+    PrintNamaPlaylist(L);
+    printf("\nPanjang Album (sebelum): %d\n", LengthOfPlaylist(L));
+    Lagu S;
+    S = GetElmtOfPlaylist(L, 0);
+    SetElmtOfPlaylist(L, 0, LP.penyanyi[0].album_penyanyi[0].lagu_album[0]);
+    PrintIsiPlaylist(L);
+    PrintNamaPlaylist(L);
+    printf("\nPanjang Album (setelah): %d", LengthOfPlaylist(L));
+    printf("\nAlbum ID: %d\n", S.album_id);
+    for (int i = 0; i < 5; i++){
+        printf("%c", S.lagu_nama[i]);
+    }
+}
+*/

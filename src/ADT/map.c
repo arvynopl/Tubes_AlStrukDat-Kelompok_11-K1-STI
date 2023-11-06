@@ -107,7 +107,7 @@ void InsertMapLagu(Penyanyi* P, Album* A, Title* ST){
         boolean found = false;
         while (!found && i < (*A).lagu_length){
             if (IsEqual((*A).lagu_album[i].lagu_nama[0], *ST)){ /* Cek string nama lagu */
-                    found = true;
+                found = true;
             }
             (*A).lagu_album[i].album_id = IndexOfAlbum(*P, *A);
             i++;  
@@ -121,7 +121,7 @@ void InsertMapAlbum(ListPenyanyi* LP, Penyanyi *P, Title* AT){
         boolean found = false;
         while (!found && i < (*P).album_length){
             if (IsEqual((*P).album_penyanyi[i].album_nama[0], *AT)){ /* Cek string nama lagu */
-                    found = true;
+                found = true;
             }
             (*P).album_penyanyi[i].penyanyi_id = IndexOfPenyanyi(*LP, *P);
             i++;  

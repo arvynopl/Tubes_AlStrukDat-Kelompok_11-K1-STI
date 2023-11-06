@@ -1,6 +1,6 @@
 #ifndef structure_H
 #define structure_H
-#include "../src/boolean.h"
+#include "D:/Tugas Besar/src/boolean.h"
 #include <stdlib.h>
 #include <stdio.h>
 
