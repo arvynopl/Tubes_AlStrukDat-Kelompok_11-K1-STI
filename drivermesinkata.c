@@ -12,7 +12,7 @@ int main(){
     PrintWord(hasilKata2);
     printf("\n");
 
-    printf("\n---WordCompare---\n");
+    printf("\n--- Function WordCompare---\n");
     printf("\nKata ke-1 adalah Tubes\n");
     printf("Kata ke-2 adalah Spotify\n");
     if(WordCompare(hasilKata1, hasilKata2)){
@@ -43,7 +43,38 @@ int main(){
     Word nonkapital = toLower(hasilKata1);
     printf("\nHasil nonkapital : ");
     PrintWord(nonkapital);
-    printf("\n");
+    printf("\n\n");
 
     return 0;
 }
+
+/*
+
+============CONTOH HASIL KELUARAN============
+
+---Function toKata dan Procedure PrintWord---
+
+Kata ke-1 : Tubes
+Kata ke-2 : Spotify
+
+---Function WordCompare---
+
+Kata ke-1 adalah Tubes
+Kata ke-2 adalah Spotify
+
+Kata ke-1 dan kata ke-2 bukan kata yang sama.
+
+---Function unionWord dan Function WordToStr---
+
+TubesSpotify
+
+---Function unionWord dan Function WordToStr---
+
+Tubes Spotify
+
+---Function toLower dan Function toLower toUpper---
+
+Hasil kapital : TUBES SPOTIFY
+Hasil nonkapital : tubes spotify
+
+*/

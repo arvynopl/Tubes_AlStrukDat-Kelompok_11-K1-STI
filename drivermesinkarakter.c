@@ -15,3 +15,16 @@ int main(){
 
     return 0;
 }
+
+/*
+
+============CONTOH HASIL KELUARAN============
+
+Karakter : t
+Karakter : u
+Karakter : b
+Karakter : e
+Karakter : s
+Karakter sudah habis.
+
+*/
