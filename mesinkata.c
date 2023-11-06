@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "mesinkata.h"
 
 boolean endWord;
@@ -14,10 +15,10 @@ void STARTWORD(FILE *input){
     START(input);
     IgnoreBlanks();
     if (currentChar == MARK){
-        EndWord = true;
+        endWord = true;
     }
     else{
-        EndWord = false;
+        endWord = false;
         CopyWord();
     }
 }

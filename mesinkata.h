@@ -95,6 +95,11 @@ char *WordToStr(Word kata);
 Word intToWord(int n);
 /*  Mengubah integer menjadi tipe data Word */
 
+void concatWord(Word *kata1, Word kata2);
+/* Menyambungkan kata kedua ke dalam kata pertama
+   I.S. sembarang
+   F.S. kata2 disambung ke kata pertama */
+
 Word toLower(Word kata);
 // /* Mengubah kata yang merupakan huruf kapital menjadi huruf kecil */
 
