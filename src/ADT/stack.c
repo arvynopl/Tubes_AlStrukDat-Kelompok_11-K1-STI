@@ -4,13 +4,13 @@
 
 void CreateEmpty(HistoriLagu * H){
     (*H).idxTop = Nil;
-}
+
 
 boolean isEmpty(HistoriLagu * H){
     return (*H).idxTop == Nil;
 }
 
-boolean IsFull(Stack S){
+boolean IsFull(HIstoriLagu *H){
     return (*H).idxTop == MaxEl - 1;
 }
 
