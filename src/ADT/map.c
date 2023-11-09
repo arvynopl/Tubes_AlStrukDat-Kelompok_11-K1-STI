@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "map.h"
 
 /* ### Konstruktor ### */
@@ -83,7 +81,8 @@ Lagu ValueMapLagu(Album A, Key K){
             return A.lagu_album[K];
         } else{
             Lagu L;
-            L.lagu_nama[0] = STR_UNDEF;
+            L.lagu_nama.TabWord[0] = STR_UNDEF;
+            L.lagu_nama.Length = 0;
             return L;
         }
     }
@@ -101,12 +100,12 @@ Album ValueMapAlbum(Penyanyi P, Key K){
     }
 }
 /* Menambahkan array of character (Title) ST sebagai value elemen Album A dengan Key K. */
-void InsertMapLagu(Penyanyi* P, Album* A, Title* ST){
+void InsertMapLagu(Penyanyi* P, Album* A, Word* ST){
     if (!IsFullMapLagu(*A)){
         int i = 0;
         boolean found = false;
         while (!found && i < (*A).lagu_length){
-            if (IsEqual((*A).lagu_album[i].lagu_nama[0], *ST)){ /* Cek string nama lagu */
+            if (WordCompare((*A).lagu_album[i].lagu_nama, *ST)){ /* Cek string nama lagu */
                 found = true;
             }
             (*A).lagu_album[i].album_id = IndexOfAlbum(*P, *A);
@@ -115,12 +114,12 @@ void InsertMapLagu(Penyanyi* P, Album* A, Title* ST){
     }
 }
 /* Menambahkan array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
-void InsertMapAlbum(ListPenyanyi* LP, Penyanyi *P, Title* AT){
+void InsertMapAlbum(ListPenyanyi* LP, Penyanyi *P, Word* AT){
     if (!IsFullMapAlbum(*P)){
         int i = 0;
         boolean found = false;
         while (!found && i < (*P).album_length){
-            if (IsEqual((*P).album_penyanyi[i].album_nama[0], *AT)){ /* Cek string nama lagu */
+            if (WordCompare((*P).album_penyanyi[i].album_nama, *AT)){ /* Cek string nama lagu */
                 found = true;
             }
             (*P).album_penyanyi[i].penyanyi_id = IndexOfPenyanyi(*LP, *P);

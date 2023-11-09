@@ -1,3 +1,4 @@
 .vscode/
+structure.h
 boolean.h
-src/ADT/main.exe
+main.exe
