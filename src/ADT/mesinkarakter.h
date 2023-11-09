@@ -3,7 +3,7 @@
 
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
-#include "D:/Tugas Besar/src/structure.h"
+#include "../structure.h"
 
 /* State Mesin */
 extern char currentChar;

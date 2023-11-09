@@ -1,6 +1,7 @@
-#ifndef map_H
-#define map_H
-#include "../src/structure.h"
+#ifndef MAP_H
+#define MAP_H
+#include "../structure.h"
+#include "mesinkata.h"
 
 /* ### Konstruktor ### */
 /* Membuat Album kosong (A.lagu_length = Nil) sebagai Map dari Lagu */
@@ -30,9 +31,9 @@ Lagu ValueMapLagu(Album A, Key K);
 /* Mengembalikan nilai value Album dengan Key K dari Penyanyi P */
 Album ValueMapAlbum(Penyanyi P, Key K);
 /* Menambahkan array of character (Title) ST sebagai value elemen Album A dengan Key K. */
-void InsertMapLagu(Penyanyi* P, Album* A, Title* ST);
+void InsertMapLagu(Penyanyi* P, Album* A, Word* ST);
 /* Menambahkan array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
-void InsertMapAlbum(ListPenyanyi* LP, Penyanyi *P, Title* AT);
+void InsertMapAlbum(ListPenyanyi* LP, Penyanyi *P, Word* AT);
 /* Menghapus array of character (Title) ST sebagai value elemen Album A dengan Key K. */
 void DeleteMapLagu(Album *A, Key K);
 /* Menghapus array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
