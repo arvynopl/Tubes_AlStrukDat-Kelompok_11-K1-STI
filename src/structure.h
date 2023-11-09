@@ -1,5 +1,5 @@
 #ifndef STRUCTURE_H
-#define STRUCTURE_H                                                                      _H
+#define STRUCTURE_H
 #include "boolean.h"
 #include <stdlib.h>
 #include <stdio.h>
