@@ -3,10 +3,7 @@
 
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
-
-#include "boolean.h"
-
-#define MARK '\n'
+#include "D:/Tugas Besar/src/structure.h"
 
 /* State Mesin */
 extern char currentChar;

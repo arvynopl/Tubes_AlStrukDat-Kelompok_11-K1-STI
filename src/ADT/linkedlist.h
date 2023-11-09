@@ -1,12 +1,12 @@
 #ifndef linkedlist_H
 #define linkedlist_H
-#include "../src/structure.h"
+#include "D:/Tugas Besar/src/structure.h"
 
 /* ### Konstruktor ### */
 /* Membuat list baru dengan kondisi kosong (L = Nil) */
 void CreatePlaylist(NamaPlaylist *L);
 /* Membuat node baru dengan info bernilai val */
-LaguPlaylist* NewLagu(Lagu val);
+LaguPlaylist* NewLagu(NamaPlaylist *L, Lagu val);
 
 /* ### Predikat ### */
 /* Memeriksa kondisi sebuah kosong tidaknya sebuah list L.
