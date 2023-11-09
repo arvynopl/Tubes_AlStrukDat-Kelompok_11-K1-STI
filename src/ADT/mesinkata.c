@@ -43,7 +43,7 @@ void ADVWORD(){
 void CopyWord(){
     currentWord.Length = 0;
     while (currentChar != BLANK && currentChar != MARK){
-        if (currentWord.Length < NMax){
+        if (currentWord.Length < (MaxEl/2)){
             currentWord.TabWord[currentWord.Length++] = currentChar;
             ADV();
         }

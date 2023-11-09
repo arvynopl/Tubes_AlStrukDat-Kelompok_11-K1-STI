@@ -1,26 +1,12 @@
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
-
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
-
-#include "boolean.h"
 #include "mesinkarakter.h"
-#include <stdio.h>
-
-#define NMax 50
-#define BLANK ' '
-
-typedef struct
-{
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-   int Length;
-} Word;
 
 /* State Mesin Kata */
 extern boolean EndWord;
 extern Word currentWord;
-
 
 void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
@@ -55,6 +41,8 @@ void CopyWord();
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 boolean isEndWord();
+/*  Fungsi yang menerima sebuah parameter currentWord bertipe Word
+    Kemudian mengembalikan boolean endWord */
 
 Word GetWord();
 /*  Fungsi yang menerima sebuah parameter currentWord bertipe Word
