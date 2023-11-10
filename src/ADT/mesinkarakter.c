@@ -1,5 +1,4 @@
 #include "mesinkarakter.h"
-#include <stdio.h>
 
 char currentChar;
 boolean EOP;

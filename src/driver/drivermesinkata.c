@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "mesinkata.h"
+#include "../ADT/mesinkata.h"
 
 int main(){
     printf("\n---Function toKata dan Procedure PrintWord---\n");

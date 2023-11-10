@@ -1,12 +1,18 @@
-#ifndef linkedlist_H
-#define linkedlist_H
-#include "../src/structure.h"
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+#include "../structure.h"
+#include "mesinkata.h"
 
 /* ### Konstruktor ### */
 /* Membuat list baru dengan kondisi kosong (L = Nil) */
 void CreatePlaylist(NamaPlaylist *L);
 /* Membuat node baru dengan info bernilai val */
-LaguPlaylist* NewLagu(Lagu val);
+Address NewLagu(Lagu val);
+/* Melakukan dealokasi pada sebuah node */
+void Dealokasi (Address *P);
+/* I.S. P terdefinisi */
+/* F.S. P dikembalikan ke sistem */
+/* Melakukan dealokasi/pengembalian address P */
 
 /* ### Predikat ### */
 /* Memeriksa kondisi sebuah kosong tidaknya sebuah list L.
@@ -21,7 +27,7 @@ int LengthOfPlaylist(NamaPlaylist L);
 /* Mendapatkan elemen sebuah node dengan indeks idx pada list L */
 Lagu GetElmtOfPlaylist(NamaPlaylist L, int idx);
 /* Mengubah elemen sebuah node dengan indeks idx pada list L menjadi bernilai val */
-void SetElmtOfPlaylist(NamaPlaylist L, int idx, Lagu val);
+void SetElmtOfPlaylist(NamaPlaylist *L, int idx, Lagu val);
 
 /* ### Menambahkan elemen ### */
 /* Menambahkan nodes baru dengan nilai val pada indeks pertama list L */
@@ -42,5 +48,7 @@ void DeleteLastPlaylist(NamaPlaylist* L, Lagu* val);
 /* ### Menyatukan nodes dalam list berkait ### */
 /* Menyatukan nodes yang ada pada List L1 dan List L2 menjadi suatu list L */
 NamaPlaylist ConcatPlaylist(NamaPlaylist L1, NamaPlaylist L2);
+/* Mengeluarkan output berupa nama playlist dan lagu yang ada di dalamnya */
+void PrintPlaylist(NamaPlaylist L);
 
 #endif
