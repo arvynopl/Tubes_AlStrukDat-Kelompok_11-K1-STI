@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "queue_alt3.h"
+#include "../ADT/queue.h"
 
 int main(){
     QueueLagu Q1;
