@@ -21,7 +21,7 @@ Address NewLagu(Lagu val){
     }
 }
 
-void Dealokasi (Address *P){
+void Dealokasi(Address *P){
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
@@ -112,7 +112,7 @@ Lagu GetElmtOfPlaylist(NamaPlaylist L, int idx){
     }  
 }
 
-void SetElmtOfPlaylist(NamaPlaylist *L, int idx, Lagu val){
+void SetElmtOfPlaylist(NamaPlaylist* L, int idx, Lagu val){
     Address P = (*L).list;
     int ctr = 0;
 

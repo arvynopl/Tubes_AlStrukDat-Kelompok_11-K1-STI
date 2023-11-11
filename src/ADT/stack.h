@@ -1,14 +1,19 @@
-#ifndef stack_H
-#define stack_H
-#include "structure.h"
+#ifndef STACK_H
+#define STACK_H
+#include "../structure.h"
+#include "mesinkata.h"
 
-void CreateEmpty(HistoriLagu *H);
-/*membuat histori lagu bertipe stack*/
-boolean isEmpty(HistoriLagu * H);
-/*cek apakah history lagu kosong atau tidak*/
-boolean IsFull(Stack S);
-/*cek apakah histori lagu sudah penuh ( MaxEl = 100)*/
-void Push(HistoriLagu * H, Lagu L);
-/*Memasukkan lagu sebagai elemen top yang ke dalam histori lagu*/
-void Pop(HistoriLagu * H, Lagu* L);
-/*mengeluarkan lagu (elemen top) dari histori lagu*/
+/* Membuat histori lagu bertipe stack */
+void CreateEmpty(HistoriLagu* H);
+/* Mengirimkan true jika histori lagu kosong (Nil = 0) */
+boolean IsEmpty(HistoriLagu H);
+/* Mengirimkan true jika histori lagu sudah penuh (MaxEl = 100) */
+boolean IsFull(HistoriLagu H);
+/* Memasukkan lagu sebagai elemen pada index top ke dalam histori lagu */
+void Push(HistoriLagu* H, Lagu L);
+/* Mengeluarkan lagu sebagai elemen pada index top dari histori lagu*/
+void Pop(HistoriLagu* H, Lagu* L);
+
+#endif
+
+

@@ -19,11 +19,11 @@ boolean IsEmptyMapAlbum(Penyanyi P){
 }
 /* Mengirim true jika lagu Album A penuh (A.lagu_length = MaxEl) */
 boolean IsFullMapLagu(Album A){
-    return (A.lagu_length == MaxEl);
+    return (A.lagu_length == MaxEl/5);
 }
 /* Mengirim true jika album Penyanyi P penuh (P.album_length = MaxEl) */
 boolean IsFullMapAlbum(Penyanyi P){
-    return (P.album_length == MaxEl);
+    return (P.album_length == MaxEl/10);
 }
 /* Mengirim panjang isi (Lagu) Album A */
 int LengthMapLagu(Album A){

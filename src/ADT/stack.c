@@ -1,34 +1,39 @@
-#include "structure.h"
-#include <stdio.h>
 #include "stack.h"
 
-void CreateEmpty(HistoriLagu * H){
-    (*H).idxTop = Nil;
-
-
-boolean isEmpty(HistoriLagu * H){
-    return (*H).idxTop == Nil;
+void CreateEmpty(HistoriLagu* H){
+    (*H).idxTop = IDX_UNDEF;
 }
 
-boolean IsFull(HIstoriLagu *H){
-    return (*H).idxTop == MaxEl - 1;
+boolean IsEmpty(HistoriLagu H){
+    return (H.idxTop == IDX_UNDEF);
 }
 
-void Push(HistoriLagu * H, Lagu L){
-    if (isEmpty (*H)){
-        (*H).idxTop = 0;
-        (*H).lagu_history[(*H).idxTop] = L;
-    }else{
-        idxTop ++;
-        (*H).lagu_history[(*H).idxTop] = L;
+boolean IsFull(HistoriLagu H){
+    return (H.idxTop == MaxEl - 1);
+}
+
+void Push(HistoriLagu* H, Lagu L){
+    if (!IsFull(*H)){
+        if (IsEmpty(*H)){
+            (*H).idxTop = 0;
+        } else{
+            (*H).idxTop++;
+        }
+        (*H).lagu_histori[(*H).idxTop] = L;
+    } else{
+        printf ("Histori lagu sudah penuh...\n");
     }
 }
 
-void Pop(HistoriLagu * H, Lagu* L){
-    if (!isEmpty(*H)){
-        *L = (*H).lagu_history[(*H).idxTop];
-        (*H).idxTop--;
-    }else{
-        printf("error");
+void Pop(HistoriLagu* H, Lagu* L){
+    if (!IsEmpty(*H)){
+        *L = (*H).lagu_histori[(*H).idxTop];
+        if ((*H).idxTop == 0){
+            (*H).idxTop = IDX_UNDEF;
+        } else{
+            (*H).idxTop--;
+        }
+    } else{
+        printf("Histori lagu kosong, silahkan play lagu terlebih dahulu...\n");
     }
 }
