@@ -12,3 +12,5 @@ void Push(HistoriLagu * H, Lagu L);
 /*Memasukkan lagu sebagai elemen top yang ke dalam histori lagu*/
 void Pop(HistoriLagu * H, Lagu* L);
 /*mengeluarkan lagu (elemen top) dari histori lagu*/
+void displayHistori (HistoriLagu *H);
+/*Menampilkan semuluruh lagu yang ada di history*/

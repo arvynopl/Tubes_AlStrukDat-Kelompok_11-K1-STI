@@ -4,6 +4,7 @@
 
 void CreateEmpty(HistoriLagu * H){
     (*H).idxTop = Nil;
+}
 
 
 boolean isEmpty(HistoriLagu * H){
@@ -30,5 +31,11 @@ void Pop(HistoriLagu * H, Lagu* L){
         (*H).idxTop--;
     }else{
         printf("error");
+    }
+}
+
+void displayHistory (HistoriLagu *H){
+    for (int i = (*H).idxTop - 1; i>= 0; i--){
+        printf("- %s\n", (*H).lagu_histori[i].lagu_nama);
     }
 }
