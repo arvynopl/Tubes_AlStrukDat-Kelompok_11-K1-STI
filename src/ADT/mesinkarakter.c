@@ -63,5 +63,10 @@ char GetCC(){
 }
 
 boolean IsEOP(){
+<<<<<<< HEAD:mesinkarakter.c
     return (currentChar == MARK || currentChar == ' ');
 }
+=======
+    return currentChar == MARK;
+}
+>>>>>>> a3564e0a052be216b511a45109ad2ffd8ca9cf7d:src/ADT/mesinkarakter.c
