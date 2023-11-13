@@ -1,10 +1,9 @@
-#include <stdio.h>
-#include "mesinkata.h"
+#include "../ADT/mesinkata.h"
 
 int main(){
     printf("\n---Function toKata dan Procedure PrintWord---\n");
-    Word hasilKata1 = toKata("Tubes");
-    Word hasilKata2 = toKata("Spotify");
+    Word hasilKata1 = ToKata("Tubes");
+    Word hasilKata2 = ToKata("Spotify");
     printf("\nKata ke-1 : ");
     PrintWord(hasilKata1);
     printf("\n");
@@ -24,7 +23,7 @@ int main(){
 
     printf("\n---Function unionWord dan Function WordToStr---\n");
     char *kata1 = WordToStr(hasilKata1);
-    Word hasilUnion = unionWord(kata1, hasilKata2);
+    Word hasilUnion = UnionWord(kata1, hasilKata2);
     printf("\n");
     PrintWord(hasilUnion);
     printf("\n");
@@ -36,11 +35,11 @@ int main(){
     printf("\n");
 
     printf("\n---Function toLower dan Function toLower toUpper---\n");
-    Word kapital = toUpper(hasilKata1);
+    Word kapital = ToUpper(hasilKata1);
     printf("\nHasil kapital : ");
     PrintWord(kapital);
 
-    Word nonkapital = toLower(hasilKata1);
+    Word nonkapital = ToLower(hasilKata1);
     printf("\nHasil nonkapital : ");
     PrintWord(nonkapital);
     printf("\n\n");

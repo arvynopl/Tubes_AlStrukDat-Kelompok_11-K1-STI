@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "mesinkata.h"
 
 boolean endWord;
@@ -24,7 +22,7 @@ void STARTWORD(FILE *input){
 }
 
 void STARTINPUT(){
-    currentWord = toKata("");
+    currentWord = ToKata("");
     STARTWORD(stdin);
 }
 
@@ -43,7 +41,7 @@ void ADVWORD(){
 void CopyWord(){
     currentWord.Length = 0;
     while (currentChar != BLANK && currentChar != MARK){
-        if (currentWord.Length < NMax){
+        if (currentWord.Length < (MaxEl/2)){
             currentWord.TabWord[currentWord.Length++] = currentChar;
             ADV();
         }
@@ -52,7 +50,7 @@ void CopyWord(){
     }
 }
 
-boolean isEndWord() {
+boolean IsEndWord() {
     return endWord;
 }
 
@@ -60,7 +58,7 @@ Word GetWord(){
     return currentWord;
 }
 
-int stringLength(char *str){
+int StringLength(char *str){
     int len = 0;
     while (str[len] != '\0'){
         len = len + 1;
@@ -69,11 +67,11 @@ int stringLength(char *str){
     return len;
 }
 
-Word toKata(char *str){
+Word ToKata(char *str){
     Word kata;
-    kata.Length = stringLength(str);
+    kata.Length = StringLength(str);
 
-    for (int i = 0; i < stringLength(str); i++){
+    for (int i = 0; i < StringLength(str); i++){
         kata.TabWord[i] = str[i];
     }
 
@@ -114,10 +112,10 @@ int WordToInt(Word currentWord){
     return result;
 }
 
-Word unionWord(char* str, Word b){
+Word UnionWord(char* str, Word b){
     Word a;
-    a.Length = stringLength(str);
-    for (int i = 0; i < stringLength(str); i++){
+    a.Length = StringLength(str);
+    for (int i = 0; i < StringLength(str); i++){
         a.TabWord[i] = str[i];
     }
     for (int i = 0; i < b.Length; i++){
@@ -127,8 +125,8 @@ Word unionWord(char* str, Word b){
     return a;
 }
 
-char *WordToStr(Word kata){
-    char *str = (char *)malloc(kata.Length * sizeof(char));
+char* WordToStr(Word kata){
+    char* str = (char*) malloc(kata.Length * sizeof(char));
     for (int i = 0; i < kata.Length; i++){
         str[i] = kata.TabWord[i];
     }
@@ -136,7 +134,7 @@ char *WordToStr(Word kata){
     return str;
 }
 
-void concatWord(Word *kata1, Word kata2){
+void ConcatWord(Word *kata1, Word kata2){
     (*kata1).TabWord[(*kata1).Length] = ' ';
     (*kata1).Length++;
     for (int i = 0; i < kata2.Length; i++){
@@ -145,7 +143,7 @@ void concatWord(Word *kata1, Word kata2){
     (*kata1).Length = (*kata1).Length + kata2.Length;
 }
 
-Word intToWord(int n) {
+Word IntToWord(int n) {
     Word num; num.Length = 0;
     if (n == 0){
         num.TabWord[num.Length] = '0'; num.Length++;
@@ -163,7 +161,7 @@ Word intToWord(int n) {
     return num;
 }
 
-Word toLower(Word kata){
+Word ToLower(Word kata){
     Word lower;
     lower.Length = kata.Length;
     for (int i = 0; i < kata.Length; i++){
@@ -177,7 +175,7 @@ Word toLower(Word kata){
     return lower;
 }
 
-Word toUpper(Word kata){
+Word ToUpper(Word kata){
     Word upper;
     upper.Length = kata.Length;
     for (int i = 0; i < kata.Length; i++){

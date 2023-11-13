@@ -3,11 +3,7 @@
 
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
-
-#include "boolean.h"
-#include <stdio.h> 
-
-#define MARK '\n'
+#include "../structure.h"
 
 /* State Mesin */
 extern FILE *pita;
@@ -22,7 +18,7 @@ void START(char mode);
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
 
-void tambahKata();
+void TambahKata();
 
 void ADV();
 /* Pita dimajukan satu karakter.

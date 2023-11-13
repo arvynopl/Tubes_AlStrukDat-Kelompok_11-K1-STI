@@ -1,5 +1,4 @@
-#include "mesinkarakter.h"
-#include <stdio.h>
+#include "../ADT/mesinkarakter.h"
 
 char currentChar;
 boolean EOP;
@@ -23,8 +22,8 @@ void START(char mode){
     }
 }
 
-void tambahKata(){
-    pita = fopen("pitakar.txt", "a"); // Buka file dalam mode append
+void TambahKata(){
+    pita = fopen("pitakar.txt", "a");
 
     if (pita == NULL) {
         printf("Gagal membuka file.");
@@ -63,10 +62,5 @@ char GetCC(){
 }
 
 boolean IsEOP(){
-<<<<<<< HEAD:mesinkarakter.c
     return (currentChar == MARK || currentChar == ' ');
 }
-=======
-    return currentChar == MARK;
-}
->>>>>>> a3564e0a052be216b511a45109ad2ffd8ca9cf7d:src/ADT/mesinkarakter.c

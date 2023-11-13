@@ -1,26 +1,12 @@
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
-
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
-
-#include "boolean.h"
 #include "mesinkarakter.h"
-#include <stdio.h>
-
-#define NMax 50
-#define BLANK ' '
-
-typedef struct
-{
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-   int Length;
-} Word;
 
 /* State Mesin Kata */
 extern boolean EndWord;
 extern Word currentWord;
-
 
 void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
@@ -54,17 +40,19 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
-boolean isEndWord();
+boolean IsEndWord();
+/*  Fungsi yang menerima sebuah parameter currentWord bertipe Word
+    Kemudian mengembalikan boolean endWord */
 
 Word GetWord();
 /*  Fungsi yang menerima sebuah parameter currentWord bertipe Word
     Kemudian mengembalikan Word tersebut */
 
-int stringLength (char* str);
+int StringLength (char* str);
 /*  Fungsi yang menerima sebuah parameter str bertipe string
     Kemudian mengembalikan panjang dari string tersebut */
 
-Word toKata(char* str);
+Word ToKata(char* str);
 /*  Fungsi yang menerima sebuah paramater str bertipe string
     Kemudian mengembalikan elemen bertipe Word yang merupakan hasil transformasi string str */
 
@@ -79,31 +67,26 @@ boolean WordCompare(Word currentWord, Word inputWord);
 int WordToInt(Word currrentWord);
 /*  Fungsi yang menerima parameter berupa string dan mengembalikannya dalam bentuk integer */
 
-Word unionWord(char* str, Word b);
+Word UnionWord(char* str, Word b);
 // /* Fungsi yang menerima dua parameter berupa string dan Word
 //    Kemudian mengembalikan sebuah Word yang merupakan hasil penggabungan string dan Word */
 
-char *WordToStr(Word kata);
+char* WordToStr(Word kata);
 /*  Fungsi yang menerima parameter berupa Word kemudian mengubah 
     dan mengembalikan kata tersebut menjadi sebuah string */
 
-// void concatWord(Word *kata1, Word kata2);
-// /* Menyambungkan kata kedua ke dalam kata pertama
-//    I.S. sembarang
-//    F.S. kata2 disambung ke kata pertama */
-
-Word intToWord(int n);
+Word IntToWord(int n);
 /*  Mengubah integer menjadi tipe data Word */
 
-void concatWord(Word *kata1, Word kata2);
+void ConcatWord(Word *kata1, Word kata2);
 /* Menyambungkan kata kedua ke dalam kata pertama
    I.S. sembarang
    F.S. kata2 disambung ke kata pertama */
 
-Word toLower(Word kata);
+Word ToLower(Word kata);
 // /* Mengubah kata yang merupakan huruf kapital menjadi huruf kecil */
 
-Word toUpper(Word kata);
+Word ToUpper(Word kata);
 // /* Mengubah kata yang merupakan huruf kecil menjadi huruf kapital */
 
 #endif

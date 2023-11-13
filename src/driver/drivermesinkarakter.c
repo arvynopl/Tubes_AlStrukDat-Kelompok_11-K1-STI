@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include "mesinkarakter.h"
-
+#include "../ADT/mesinkarakter.h"
 
 int main() {
     char inputMode;

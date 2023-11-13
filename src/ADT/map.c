@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "map.h"
 
 /* ### Konstruktor ### */
@@ -21,60 +19,50 @@ boolean IsEmptyMapAlbum(Penyanyi P){
 }
 /* Mengirim true jika lagu Album A penuh (A.lagu_length = MaxEl) */
 boolean IsFullMapLagu(Album A){
-    return (A.lagu_length == MaxEl);
+    return (A.lagu_length == MaxEl/5);
 }
 /* Mengirim true jika album Penyanyi P penuh (P.album_length = MaxEl) */
 boolean IsFullMapAlbum(Penyanyi P){
-    return (P.album_length == MaxEl);
+    return (P.album_length == MaxEl/10);
+}
+/* Mengirim panjang isi (Lagu) Album A */
+int LengthMapLagu(Album A){
+    return A.lagu_length;
+}
+/* Mengirim panjang isi (Album) Penyanyi P */
+int LengthMapAlbum(Penyanyi P){
+    return P.album_length;
 }
 /* Mengembalikan true jika Key K adalah member dari Album A */
 boolean IsMemberMapLagu(Album A, Key K){
-    if (K < A.lagu_length){
-        return true;
-    } else {
-        return false;
-    }
+    return (K < A.lagu_length);
 }
 /* Mengembalikan true jika Key K adalah member dari Penyanyi P */
 boolean IsMemberMapAlbum(Penyanyi P, Key K){
-    if (K < P.album_length){
-        return true;
-    } else {
-        return false;
-    }
+    return (K < P.album_length);
 }
 /* ### Operator Dasar Map ### */
 /* Mendapatkan indeks sebuah Album pada Penyanyi */
 int IndexOfAlbum(Penyanyi P, Album A){
-    boolean found = false;
     int i = 0;
-    while (!found && i < P.album_length){
-        if (IsEqual(P.album_penyanyi[i].album_nama, A.album_nama)){
-            found = true;
+    while (i < P.album_length){
+        if (WordCompare(P.album_penyanyi[i].album_nama, A.album_nama)){
+            return i;
         }
         i++;
     }
-    if (found){
-        return i - 1;
-    } else{
-        return IDX_UNDEF;
-    }
+    return IDX_UNDEF;
 }
 /* Mendapatkan indeks sebuah Penyanyi pada List Penyanyi  */
 int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P){
-    boolean found = false;
     int i = 0;
-    while (!found && i < LP.penyanyi_length){
-        if (IsEqual(LP.penyanyi[i].penyanyi_nama, P.penyanyi_nama)){
-            found = true;
+    while (i < LP.penyanyi_length){
+        if (WordCompare(LP.penyanyi[i].penyanyi_nama, P.penyanyi_nama)){
+            return i;
         }
         i++;
     }
-    if (found){
-        return i - 1;
-    } else{
-        return IDX_UNDEF;
-    }
+    return IDX_UNDEF;
 }
 /* Mengembalikan nilai value Lagu dengan Key K dari Album A */
 Lagu ValueMapLagu(Album A, Key K){
@@ -82,9 +70,10 @@ Lagu ValueMapLagu(Album A, Key K){
         if (IsMemberMapLagu(A, K)){
             return A.lagu_album[K];
         } else{
-            Lagu L;
-            L.lagu_nama[0] = STR_UNDEF;
-            return L;
+            Lagu deflagu;
+            deflagu.lagu_nama.TabWord[0] = STR_UNDEF;
+            deflagu.lagu_nama.Length = 0;
+            return deflagu;
         }
     }
 }
@@ -94,37 +83,55 @@ Album ValueMapAlbum(Penyanyi P, Key K){
         if (IsMemberMapAlbum(P, K)){
             return P.album_penyanyi[K];
         } else{
-            Album A;
-            A.lagu_length = IDX_UNDEF;
-            return A;
+            Album defalbum;
+            defalbum.album_nama.TabWord[0] = STR_UNDEF;
+            defalbum.album_nama.Length = 0;
+            defalbum.lagu_length = IDX_UNDEF;
+            Lagu deflagu;
+            deflagu.lagu_nama.TabWord[0] = STR_UNDEF;
+            deflagu.lagu_nama.Length = 0;
+            defalbum.lagu_album[0] = deflagu;
+            return defalbum;
         }
     }
 }
 /* Menambahkan array of character (Title) ST sebagai value elemen Album A dengan Key K. */
-void InsertMapLagu(Penyanyi* P, Album* A, Title* ST){
+void InsertMapLagu(Album* A, Lagu val){
     if (!IsFullMapLagu(*A)){
         int i = 0;
         boolean found = false;
-        while (!found && i < (*A).lagu_length){
-            if (IsEqual((*A).lagu_album[i].lagu_nama[0], *ST)){ /* Cek string nama lagu */
-                    found = true;
+        while (i < (*A).lagu_length){
+            if (((*A).lagu_album[i].album_id == val.album_id) && (WordCompare((*A).lagu_album[i].lagu_nama, val.lagu_nama))){
+                found = true;
+                break;
             }
-            (*A).lagu_album[i].album_id = IndexOfAlbum(*P, *A);
             i++;  
+        }
+        if (!found){
+            (*A).lagu_album[(*A).lagu_length] = val;
+            (*A).lagu_length++;
+        } else{
+            printf("Error...\n");
         }
     }
 }
 /* Menambahkan array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
-void InsertMapAlbum(ListPenyanyi* LP, Penyanyi *P, Title* AT){
+void InsertMapAlbum(Penyanyi *P, Album val){
     if (!IsFullMapAlbum(*P)){
         int i = 0;
         boolean found = false;
-        while (!found && i < (*P).album_length){
-            if (IsEqual((*P).album_penyanyi[i].album_nama[0], *AT)){ /* Cek string nama lagu */
-                    found = true;
+        while (i < (*P).album_length){
+            if (((*P).album_penyanyi[i].penyanyi_id == val.penyanyi_id) && (WordCompare((*P).album_penyanyi[i].album_nama, val.album_nama))){
+                found = true;
+                break;
             }
-            (*P).album_penyanyi[i].penyanyi_id = IndexOfPenyanyi(*LP, *P);
             i++;  
+        }
+        if (!found){
+            (*P).album_penyanyi[(*P).album_length] = val;
+            (*P).album_length++;
+        } else{
+            printf("Error...\n");
         }
     }
 }
@@ -132,7 +139,6 @@ void InsertMapAlbum(ListPenyanyi* LP, Penyanyi *P, Title* AT){
 void DeleteMapLagu(Album *A, Key K){
     if (!IsEmptyMapLagu(*A)){
         if (IsMemberMapLagu(*A, K)){
-            int i = 0;
             for (int j = K; j < (*A).lagu_length - 1; j++){
                 (*A).lagu_album[j] = (*A).lagu_album[j + 1];
             }
@@ -144,11 +150,40 @@ void DeleteMapLagu(Album *A, Key K){
 void DeleteMapAlbum(Penyanyi *P, Key K){
     if (!IsEmptyMapAlbum(*P)){
         if (IsMemberMapAlbum(*P, K)){
-            int i = 0;
             for (int j = K; j < (*P).album_length - 1; j++){
                 (*P).album_penyanyi[j] = (*P).album_penyanyi[j + 1];
             }
             (*P).album_length--;
         }
+    }
+}
+
+void PrintLagu(Lagu L){
+    PrintWord(L.lagu_nama);
+    printf("\n");
+}
+
+void PrintAlbum(Album A){
+    PrintWord(A.album_nama);
+    printf("\n");
+    for (int i = 0; i < A.lagu_length; i++){
+        printf("  %d. ", i + 1);
+        PrintLagu(A.lagu_album[i]);
+    }
+}
+
+void PrintPenyanyi(Penyanyi P){
+    PrintWord(P.penyanyi_nama);
+    printf("\n");
+    for (int i = 0; i < P.album_length; i++){
+        printf(" %d. ", i + 1);
+        PrintAlbum(P.album_penyanyi[i]);
+    }
+}
+
+void PrintListPenyanyi(ListPenyanyi LP){
+    for (int i = 0; i < LP.penyanyi_length; i++){
+        printf("%d. ", i + 1);
+        PrintPenyanyi(LP.penyanyi[i]);
     }
 }
