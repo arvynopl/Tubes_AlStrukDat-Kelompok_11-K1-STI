@@ -132,4 +132,5 @@ defpenyanyi.penyanyi_nama.Length = 0;
 defpenyanyi.album_length = 0;
 defpenyanyi.album_penyanyi[0] = defalbum;
 */
+
 #endif
