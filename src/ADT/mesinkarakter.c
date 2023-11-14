@@ -3,19 +3,19 @@
 char currentChar;
 boolean EOP;
 
-static FILE *pita;
-static int retval;
+FILE* pita;
+int retval;
 
-void START(){
-    pita = fopen("pitakar.txt", "r");;
+void START(FILE* input){
+    pita = input;
     ADV();
 }
 
 void ADV(){
     retval = fscanf(pita, "%c", &currentChar);
-        if(IsEOP()){
-            CLOSE();
-        }
+    if (IsEOP()){
+        CLOSE();
+    }
 }
 
 void CLOSE(){
