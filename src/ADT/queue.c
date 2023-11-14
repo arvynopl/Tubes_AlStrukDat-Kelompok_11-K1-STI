@@ -71,7 +71,7 @@ void DisplayQueue(QueueLagu Q){
         int j = 1;
         for (int i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
             printf("%d. ", j);
-            PrintWord(Q.lagu_queue[i]);
+            PrintWord(Q.lagu_queue[i].lagu_nama);
             printf("\n");
             j++;
             i++;

@@ -1,6 +1,22 @@
 #include "../ADT/mesinkata.h"
 
 int main(){
+    printf("---Function STARTINPUT---\n");
+    FILE* input = stdin;
+    STARTINPUT(stdin);
+    while (!IsEndWord()){
+        PrintWord(GetWord());
+        printf("\n");
+        ADVWORD();
+    } 
+    printf("\n---Function STARTWORD---\n");
+    input = fopen("D:/Tugas Besar/src/driver/pitakar.txt", "r");
+    STARTWORD(input);
+    while (!IsEndWord()){
+        PrintWord(GetWord());
+        printf("\n");
+        ADVWORD();
+    } 
     printf("\n---Function toKata dan Procedure PrintWord---\n");
     Word hasilKata1 = ToKata("Tubes");
     Word hasilKata2 = ToKata("Spotify");
@@ -29,7 +45,7 @@ int main(){
     printf("\n");
 
     printf("\n---Function unionWord dan Function WordToStr---\n");
-    concatWord(&hasilKata1, hasilKata2);
+    ConcatWord(&hasilKata1, hasilKata2);
     printf("\n");
     PrintWord(hasilKata1);
     printf("\n");

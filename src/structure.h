@@ -4,16 +4,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define Nil 0
 #define MaxEl 100
 #define IDX_UNDEF -1
 #define INT_UNDEF -999
-#define STR_UNDEF ' '
-#define Nil 0
+#define STR_UNDEF '\0'
 #define MARK '\n'
+#define END '\0'
 #define BLANK ' '
+
 typedef struct
 {
-   char TabWord[MaxEl/2]; /* Container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[MaxEl]; /* Container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
 typedef int Key;
