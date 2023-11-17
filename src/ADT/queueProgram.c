@@ -118,3 +118,45 @@ queueSwap(QueueLagu queue){
     }
 }
 
+queueRemove(QueueLagu queue, ListPenyanyi list){
+    int inputUrutan;
+    scanf("%d", &inputUrutan);
+
+    QueueLagu temp;
+    CreateQueue(&temp);
+
+    if(inputUrutan < (queue.idxTail+1)){
+        for(int i=1; i<inputUrutan; i++){
+            Lagu first = HEAD(queue);
+            Dequeue(&queue);
+            Enqueue(&temp, first);
+        }
+
+        Lagu del = HEAD(queue);
+        Dequeue(&queue);
+
+        for(int i=inputUrutan+1; i<IDX_TAIL(queue); i++){
+            Lagu first = HEAD(queue);
+            Dequeue(&queue);
+            Enqueue(&temp, first);
+        }
+        boolean found = false;
+        int x, y, z;
+        while(!found){
+            for(x=0; x<(list).penyanyi_length; x++){
+                for(y=0; y<(list).penyanyi[x].album_length; y++){
+                    for(z=0; z<(list).penyanyi[x].album_penyanyi[y].lagu_length; z++){
+                        if(WordCompare(del.lagu_nama, (list).penyanyi[x].album_penyanyi[y].lagu_album[z].lagu_nama)){
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        printf("Lagu \"");
+        PrintWord(del.lagu_nama);
+        printf("\" oleh \"");
+        PrintWord((list).penyanyi[x].penyanyi_nama);
+        prinf("\" telah dihapus dari queue!\n");
+    }
+}
