@@ -160,3 +160,8 @@ queueRemove(QueueLagu queue, ListPenyanyi list){
         prinf("\" telah dihapus dari queue!\n");
     }
 }
+
+queueClear(QueueLagu queue){
+    CreateQueue(&queue);
+    printf("Queue berhasil dikosongkan.\n");
+}
