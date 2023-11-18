@@ -53,6 +53,25 @@ int IndexOfAlbum(Penyanyi P, Album A){
     }
     return IDX_UNDEF;
 }
+
+/* Mendapatkan indeks sebuah Album berdasarkan input nama penyanyi dan album */
+int IndexOfAlbumStr(ListPenyanyi LP, Word PenyanyiNama, Word AlbumNama){
+    int i = 0;
+    while (i < LP.penyanyi_length){
+        if (WordCompare(LP.penyanyi[i].penyanyi_nama, PenyanyiNama)){
+            int j = 0;
+            while (j < LP.penyanyi[i].album_length){
+                if (WordCompare(LP.penyanyi[i].album_penyanyi[j].album_nama, AlbumNama)){
+                    return j;
+                }
+                j++;
+            }
+        }
+        i++;
+    }
+    return IDX_UNDEF;
+}
+
 /* Mendapatkan indeks sebuah Penyanyi pada List Penyanyi  */
 int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P){
     int i = 0;

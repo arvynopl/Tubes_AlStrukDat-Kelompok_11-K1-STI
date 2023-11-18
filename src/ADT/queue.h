@@ -7,14 +7,14 @@
 
 /* ### ADT Queue yang dapat digunakan ### */
 /* Queue bernilai true ketika index Head dan index Tail dari Queue tersebut bernilai Index Undefined (IDX_UNDEF) */
-boolean IsEmpty(QueueLagu Q);
+boolean IsEmptyQueue(QueueLagu Q);
 /* Queue bernilai true ketika kondisi sebagai berikut 
 1. Kondisi Index Head < Index Tail : Index Head = 0 and Index Tail = IDX_MAX
 2. Kondisi Index Head > Index Tail : Index Head = IndexTail += 1
 */
-boolean IsFull(QueueLagu Q);
+boolean IsFullQueue(QueueLagu Q);
 /* Length mengirimkan banyaknya elemen dalam suatu Queue, Length akan bernilai 0 apabila Queue kosong */
-int Length(QueueLagu Q);
+int LengthOfQueue(QueueLagu Q);
 /* CreateQueue akan membuat sebuah Queue kosong dengan mendeklarasikan Index Head dan Index Tail sebagai Index Undefined (IDX_UNDEF) */
 void CreateQueue(QueueLagu* Q);
 /* Enqueue akan menambahkan elemen X sebagai tail yang baru, idx_Tail bergeser ke kanan */

@@ -18,7 +18,7 @@
 
 /* I.S. sembarang */
 /* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
-void MakeListPenyanyi(ListPenyanyi* LP);
+void CreateListPenyanyi(ListPenyanyi* LP);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
