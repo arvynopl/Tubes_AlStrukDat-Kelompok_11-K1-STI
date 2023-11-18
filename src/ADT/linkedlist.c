@@ -326,3 +326,26 @@ void remove(ListPlaylist *L, int urutan, int id){
 
     Dealokasi(song);
 }
+
+void delete(ListPlaylist *L, int id) {
+    if (id < 0 || id >= (*L).playlist_length) {
+        printf("Error: Invalid playlist index\n");
+        return;
+    }
+
+    NamaPlaylist *p = &((*L).playlist[id]);
+
+    
+    free(p->playlist_name.TabWord);
+
+    
+    Address current = p->list;
+    while (current != NULL) {
+        Address temp = current;
+        current = current->next;
+        free(temp);
+    }
+
+    
+    free(p);
+}
