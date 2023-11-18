@@ -4,16 +4,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define Nil 0
 #define MaxEl 100
 #define IDX_UNDEF -1
 #define INT_UNDEF -999
-#define STR_UNDEF ' '
-#define Nil 0
+#define STR_UNDEF '\0'
 #define MARK '\n'
+#define END '\0'
 #define BLANK ' '
+
 typedef struct
 {
-   char TabWord[MaxEl/2]; /* Container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[MaxEl]; /* Container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
 typedef int Key;
@@ -79,7 +81,8 @@ typedef struct {
 /* playlistSize pertama kali diinisialisasi dengan nilai (MaxEl/20) */
 typedef struct {
     NamaPlaylist* playlist;
-    size_t playlistSize;
+    size_t playlist_size;
+    int playlist_length;
 } ListPlaylist;
 /* ### Struktur Data ListPlaylist ### */
 #define LIST_PLAYLIST_ID(LP, i) (LP).(*playlist + i)
@@ -93,7 +96,9 @@ typedef struct {
 } QueueLagu;
 #define LAGU_QUEUE(Q, i) (Q).lagu_queue[i]
 #define IDX_HEAD(Q) (Q).idxHead
+#define     HEAD(Q) (Q).lagu_queue[(Q).idxHead]
 #define IDX_TAIL(Q) (Q).idxTail
+#define     TAIL(Q) (Q).lagu_queue[(Q).idxTail]
 
 /* Struktur Data Histori Lagu [Stack] */
 typedef struct {
@@ -102,5 +107,32 @@ typedef struct {
 } HistoriLagu;
 #define HISTORI_LAGU(H, i) (H).lagu_queue[i]
 #define IDX_TOP(H) (H).idxTop
+
+/* ### Default State ### */
+
+/* Lagu */
+/*
+Lagu deflagu;
+deflagu.lagu_nama.TabWord[0] = STR_UNDEF;
+deflagu.lagu_nama.Length = 0;
+*/
+
+/* Album */
+/*
+Album defalbum;
+defalbum.album_nama.TabWord[0] = STR_UNDEF;
+defalbum.album_nama.Length = 0;
+defalbum.lagu_length = IDX_UNDEF;
+defalbum.lagu_album[0] = deflagu;
+*/
+
+/* Penyanyi */
+/*
+Penyanyi defpenyanyi;
+defpenyanyi.penyanyi_nama.TabWord[0] = STR_UNDEF;
+defpenyanyi.penyanyi_nama.Length = 0;
+defpenyanyi.album_length = 0;
+defpenyanyi.album_penyanyi[0] = defalbum;
+*/
 
 #endif

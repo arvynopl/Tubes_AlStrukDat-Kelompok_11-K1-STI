@@ -9,7 +9,7 @@ void CreatePlaylist(NamaPlaylist *L);
 /* Membuat node baru dengan info bernilai val */
 Address NewLagu(Lagu val);
 /* Melakukan dealokasi pada sebuah node */
-void Dealokasi (Address *P);
+void Dealokasi(Address *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
@@ -27,7 +27,7 @@ int LengthOfPlaylist(NamaPlaylist L);
 /* Mendapatkan elemen sebuah node dengan indeks idx pada list L */
 Lagu GetElmtOfPlaylist(NamaPlaylist L, int idx);
 /* Mengubah elemen sebuah node dengan indeks idx pada list L menjadi bernilai val */
-void SetElmtOfPlaylist(NamaPlaylist *L, int idx, Lagu val);
+void SetElmtOfPlaylist(NamaPlaylist* L, int idx, Lagu val);
 
 /* ### Menambahkan elemen ### */
 /* Menambahkan nodes baru dengan nilai val pada indeks pertama list L */
