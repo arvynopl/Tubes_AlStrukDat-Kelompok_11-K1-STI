@@ -4,7 +4,7 @@ boolean endWord;
 Word currentWord;
 
 void IgnoreBlanks(){
-    while (currentChar == BLANK){
+    while (currentChar == BLANK || currentChar == COLON){
         ADV();
     }
 }
@@ -38,9 +38,33 @@ void ADVWORD(){
     }
 }
 
+void ADVWORDNOSPACE(){
+    IgnoreBlanks();
+    if (currentChar == MARK){
+        endWord = true;
+    }
+    else{
+        endWord = false;
+        CopyWordNoSpace();
+        IgnoreBlanks();
+    }
+}
+
+void CopyWordNoSpace(){
+    currentWord.Length = 0;
+    while (currentChar != BLANK && currentChar != COLON && currentChar != MARK && currentChar != END){
+        if (currentWord.Length < (MaxEl)){
+            currentWord.TabWord[currentWord.Length++] = currentChar;
+            ADV();
+        }
+        else
+            break;
+    }
+}
+
 void CopyWord(){
     currentWord.Length = 0;
-    while (currentChar != BLANK && currentChar != MARK && currentChar != END){
+    while (currentChar != COLON && currentChar != MARK && currentChar != END){
         if (currentWord.Length < (MaxEl)){
             currentWord.TabWord[currentWord.Length++] = currentChar;
             ADV();

@@ -4,11 +4,11 @@
 #include "mesinkata.h"
 
 /* Membuat histori lagu bertipe stack */
-void CreateEmpty(HistoriLagu* H);
+void CreateHistori(HistoriLagu* H);
 /* Mengirimkan true jika histori lagu kosong (Nil = 0) */
-boolean IsEmpty(HistoriLagu H);
+boolean IsEmptyHistori(HistoriLagu H);
 /* Mengirimkan true jika histori lagu sudah penuh (MaxEl = 100) */
-boolean IsFull(HistoriLagu H);
+boolean IsFullHistori(HistoriLagu H);
 /* Memasukkan lagu sebagai elemen pada index top ke dalam histori lagu */
 void Push(HistoriLagu* H, Lagu L);
 /* Mengeluarkan lagu sebagai elemen pada index top dari histori lagu*/

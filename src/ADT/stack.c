@@ -1,20 +1,20 @@
 #include "stack.h"
 
-void CreateEmpty(HistoriLagu* H){
+void CreateHistori(HistoriLagu* H){
     (*H).idxTop = IDX_UNDEF;
 }
 
-boolean IsEmpty(HistoriLagu H){
+boolean IsEmptyHistori(HistoriLagu H){
     return (H.idxTop == IDX_UNDEF);
 }
 
-boolean IsFull(HistoriLagu H){
+boolean IsFullHistori(HistoriLagu H){
     return (H.idxTop == MaxEl - 1);
 }
 
 void Push(HistoriLagu* H, Lagu L){
-    if (!IsFull(*H)){
-        if (IsEmpty(*H)){
+    if (!IsFullHistori(*H)){
+        if (IsEmptyHistori(*H)){
             (*H).idxTop = 0;
         } else{
             (*H).idxTop++;
@@ -26,7 +26,7 @@ void Push(HistoriLagu* H, Lagu L){
 }
 
 void Pop(HistoriLagu* H, Lagu* L){
-    if (!IsEmpty(*H)){
+    if (!IsEmptyHistori(*H)){
         *L = (*H).lagu_histori[(*H).idxTop];
         if ((*H).idxTop == 0){
             (*H).idxTop = IDX_UNDEF;

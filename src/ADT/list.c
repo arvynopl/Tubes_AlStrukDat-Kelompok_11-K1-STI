@@ -1,6 +1,6 @@
 #include "list.h"
 
-void MakeListPenyanyi(ListPenyanyi* LP){
+void CreateListPenyanyi(ListPenyanyi* LP){
     (*LP).penyanyi_length = Nil;
 }
 
@@ -126,7 +126,7 @@ void DeleteLastListPenyanyi(ListPenyanyi* LP){
 
 ListPenyanyi ConcatListPenyanyi(ListPenyanyi L1, ListPenyanyi L2){
     ListPenyanyi L3;
-    MakeListPenyanyi(&L3);
+    CreateListPenyanyi(&L3);
     int i = 0;
     int j = (L1).penyanyi_length - 1;
     int idx = 0;
