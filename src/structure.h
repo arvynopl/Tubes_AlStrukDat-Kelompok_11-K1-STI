@@ -10,8 +10,8 @@
 #define INT_UNDEF -999
 #define STR_UNDEF '\0'
 #define MARK '\n'
-#define END '\0'
-#define BLANK ' '
+#define COLON ';'
+#define STRIP '-'
 
 typedef struct
 {
@@ -23,7 +23,7 @@ typedef int Key;
 /* Struktur Data Lagu [Map (& Set)] */
 /*  Indeks lagu [0..lagu_length] merupakan key dari map Album -> Lagu 
     Nilai variabel lagu_nama merupakan value dari map Album -> Lagu */
-typedef struct {
+typedef struct lagu {
     Word lagu_nama;
     int album_id;
 } Lagu;
@@ -34,7 +34,7 @@ typedef struct {
 /* Struktur Data Album yang memiliki Lagu [Map] */
 /*  Indeks album [0..album_length] merupakan key dari map Penyanyi -> Album 
     Nilai variabel album_nama merupakan value dari map Penyanyi -> Album */
-typedef struct {
+typedef struct album {
     Word album_nama;
     Lagu lagu_album[MaxEl/5];
     int lagu_length;
@@ -46,7 +46,7 @@ typedef struct {
 #define ALBUM_PENYANYI_ID(A, i, j) (A).penyanyi[i].album_penyanyi[j].penyanyi_id
 
 /* Struktur Data Penyanyi yang memiliki Album (yang memiliki Lagu) [List Statis] */
-typedef struct {
+typedef struct penyanyi {
     Word penyanyi_nama;
     Album album_penyanyi[MaxEl/10];
     int album_length;
@@ -56,7 +56,7 @@ typedef struct {
 #define PENYANYI_ALBUM_LENGTH(S, i) (S).penyanyi[i].album_length
 
 /* Struktur Data List Penyanyi (yang memiliki Album yang memiliki Lagu) [List Statis] */
-typedef struct {
+typedef struct listpenyanyi {
     Penyanyi penyanyi[MaxEl/20];
     int penyanyi_length;
 } ListPenyanyi;
@@ -79,7 +79,7 @@ typedef struct {
 
 /* Struktur Data List Playlist yang memiliki Playlist (yang memiliki Lagu) [List Dinamis] */
 /* playlistSize pertama kali diinisialisasi dengan nilai (MaxEl/20) */
-typedef struct {
+typedef struct listplaylist {
     NamaPlaylist* playlist;
     size_t playlist_size;
     int playlist_length;
@@ -87,9 +87,10 @@ typedef struct {
 /* ### Struktur Data ListPlaylist ### */
 #define LIST_PLAYLIST_ID(LP, i) (LP).(*playlist + i)
 #define LIST_PLAYLIST_SIZE(LP) (LP).playlistSize
+#define LIST_PLAYLIST_LENGTH(LP) (LP).penyanyi_length
 
 /* Struktur Data Queue Lagu [Queue] */
-typedef struct {
+typedef struct queue {
     Lagu lagu_queue[MaxEl];
     int idxHead;
     int idxTail;
@@ -101,12 +102,19 @@ typedef struct {
 #define     TAIL(Q) (Q).lagu_queue[(Q).idxTail]
 
 /* Struktur Data Histori Lagu [Stack] */
-typedef struct {
+typedef struct stack {
     Lagu lagu_histori[MaxEl];
     int idxTop;
 } HistoriLagu;
 #define HISTORI_LAGU(H, i) (H).lagu_queue[i]
 #define IDX_TOP(H) (H).idxTop
+
+/* ### Variabel Global ### */
+struct listpenyanyi LP;
+struct lagu currSong;
+struct queue Queue;
+struct stack Histori;
+struct listplaylist ListPL;
 
 /* ### Default State ### */
 
