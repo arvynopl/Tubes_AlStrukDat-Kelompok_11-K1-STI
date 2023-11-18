@@ -298,3 +298,31 @@ void swap(ListPlaylist* L, int idx0, int idx1, int idx2){
 
     printf("Songs swapped successfully\n");
 }
+
+void remove(ListPlaylist *L, int urutan, int id){
+    if (id < 0 || id >= (*L).playlist_length){
+        printf("Error\n");
+    }
+
+    NamaPlaylist *p = &((*L).playlist[id]);
+
+    if (urutan <= 0 || urutan > LengthOfPlaylist(*p)){
+        printf("Error\n");
+    }
+
+    Address song = (*p).list;
+    Address prevsong = Nil;
+    
+    for (int i = 0; i < urutan; i++){
+        prevsong = song;
+        song = (*song).next;
+    }
+
+    if (urutan == 1){
+        (*p).list = (*song).next;
+    } else{
+        (*prevsong).next = (*song).next;
+    }
+
+    Dealokasi(song);
+}
