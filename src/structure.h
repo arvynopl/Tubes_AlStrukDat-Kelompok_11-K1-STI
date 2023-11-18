@@ -12,8 +12,6 @@
 #define MARK '\n'
 #define COLON ';'
 #define STRIP '-'
-#define END '\0'
-#define BLANK ' '
 
 typedef struct
 {
