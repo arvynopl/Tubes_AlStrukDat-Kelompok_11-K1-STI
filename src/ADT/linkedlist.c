@@ -265,3 +265,36 @@ void PrintPlaylist(NamaPlaylist L){
         i++;
     }
 }
+
+void swap(ListPlaylist* L, int idx0, int idx1, int idx2){
+    if ((idx0 < 0) || (idx0 >= (*L).playlist_length)){
+        printf("Error: Invalid index for playlist\n");
+        return;
+    }
+
+    NamaPlaylist *p = &((*L).playlist[idx0]);
+
+    int n = LengthOfPlaylist(*p);
+
+    if (idx1 < 0 || idx1 >= n || idx2 < 0 || idx2 >= n) {
+        printf("Error: Invalid index for songs in the playlist\n");
+        return;
+    }
+
+    Address a = (*p).list;
+    Address b = (*p).list;
+    Lagu temp;
+    for (int i = 0; i <= idx1; i++){
+        a = (*a).next;
+    }
+
+    for (int j = 0; j <= idx2; j++){
+        b = (*b).next;
+    }
+
+    temp = (*a).lagu_playlist;
+    (*a).lagu_playlist = (*b).lagu_playlist;
+    (*b).lagu_playlist = temp;
+
+    printf("Songs swapped successfully\n");
+}
