@@ -106,6 +106,7 @@ Lagu GetElmtOfPlaylist(NamaPlaylist L, int idx){
     } else{
         Lagu defLagu;
         defLagu.album_id = IDX_UNDEF;
+        defLagu.penyanyi_id = IDX_UNDEF;
         defLagu.lagu_nama.TabWord[0] = STR_UNDEF;
         defLagu.lagu_nama.Length = 0;
         return defLagu;

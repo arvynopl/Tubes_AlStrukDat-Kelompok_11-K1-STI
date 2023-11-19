@@ -32,6 +32,7 @@ typedef int Key;
 typedef struct lagu {
     Word lagu_nama;
     int album_id;
+    int penyanyi_id;
 } Lagu;
 /* ### Akses Elemen Lagu ### */
 #define LAGU_NAMA(L, i, j, k) (L).penyanyi[i].album_penyanyi[j].lagu_album[k].lagu_nama

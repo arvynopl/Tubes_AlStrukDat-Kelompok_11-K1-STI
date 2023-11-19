@@ -88,4 +88,5 @@ void PrintListPlaylist(ListPlaylist X){
         printf("%d. ", i + 1);
         PrintPlaylist(X.playlist[i]);
     }
+    printf("\n");
 }
