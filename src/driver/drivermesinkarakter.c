@@ -7,14 +7,16 @@ int main(){
         printf("Karakter: %c\n", GetCC());
         ADV();
     }
+    CLOSE();
     printf("Karakter dalam terminal sudah habis...\n");
 
     input = fopen("D:/Tugas Besar/src/driver/pitakar.txt", "r");
     START(input);
-    while (!IsEOP()){
+    while (!IsEOF()){
         printf("Karakter: %c\n", GetCC());
         ADV();
     }
+    CLOSE();
     printf("Karakter dalam file sudah habis...\n");
 }
 
