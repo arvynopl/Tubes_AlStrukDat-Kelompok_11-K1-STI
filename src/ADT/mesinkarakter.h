@@ -10,15 +10,13 @@ extern FILE *pita;
 extern char currentChar;
 extern boolean EOP;
 
-void START(char mode);
+void START(FILE* input);
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    I.S. : sembarang
    F.S. : currentChar adsalah karakter pertama pada pita
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
-
-void TambahKata();
 
 void ADV();
 /* Pita dimajukan satu karakter.
@@ -37,5 +35,7 @@ char GetCC();
 
 boolean IsEOP();
 /* Mengirimkan true jika currentChar = MARK */
+
+boolean IsEOF();
 
 #endif

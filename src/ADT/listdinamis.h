@@ -20,4 +20,6 @@ void ResizeSmallerListPlaylist(ListPlaylist* X);
 
 void FreePlaylist(ListPlaylist* X);
 
+void PrintListPlaylist(ListPlaylist X);
+
 #endif

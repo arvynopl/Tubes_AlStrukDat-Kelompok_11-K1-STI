@@ -37,3 +37,13 @@ void Pop(HistoriLagu* H, Lagu* L){
         printf("Histori lagu kosong, silahkan play lagu terlebih dahulu...\n");
     }
 }
+
+void PrintHistori(HistoriLagu H){
+    int j = 1;
+    for (int i = H.idxTop; i >= 0; i--){
+        printf("%d. ", j);
+        PrintWord(H.lagu_histori[i].lagu_nama);
+        printf("\n");
+        j++;
+    }
+}

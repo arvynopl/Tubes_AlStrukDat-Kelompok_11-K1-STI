@@ -13,9 +13,6 @@ void START(FILE* input){
 
 void ADV(){
     retval = fscanf(pita, "%c", &currentChar);
-    if (IsEOP()){
-        CLOSE();
-    }
 }
 
 void CLOSE(){
@@ -28,4 +25,8 @@ char GetCC(){
 
 boolean IsEOP(){
     return currentChar == MARK;
+}
+
+boolean IsEOF(){
+    return retval == EOF;
 }

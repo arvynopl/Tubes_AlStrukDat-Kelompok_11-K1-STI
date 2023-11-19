@@ -12,8 +12,12 @@
 #define MARK '\n'
 #define COLON ';'
 #define STRIP '-'
-#define END '\0'
 #define BLANK ' '
+#define TAB '\t'
+#define RET '\r'
+#define VTAB '\v'
+#define FEED '\f'
+#define BACKSPACE '\b'
 
 typedef struct
 {

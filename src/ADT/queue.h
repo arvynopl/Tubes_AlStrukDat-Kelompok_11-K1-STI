@@ -25,7 +25,7 @@ void Enqueue(QueueLagu* Q, Lagu X);
 /* (1) Jika queue menjadi kosong, idx_head dan idx_tail menjadi idx_undef */
 /* Jika idx_head = idx_max - 1, idx_head menjadi 0 */
 Lagu Dequeue(QueueLagu* Q);
-/* DisplayQueue akan mengeluarkan hasil print dari isi Queue q */
-void DisplayQueue(QueueLagu q);
+/* PrintQueue akan mengeluarkan hasil print dari isi Queue q */
+void PrintQueue(QueueLagu q);
 
 #endif

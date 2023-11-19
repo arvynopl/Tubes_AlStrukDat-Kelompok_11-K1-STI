@@ -72,7 +72,7 @@ void ResizeSmallerListPlaylist(ListPlaylist* X){
 }
 
 void FreePlaylist(ListPlaylist* X){
-    for (int i = 0; i < X->playlist_length; i++){
+    for (int i = 0; i < (*X).playlist_length; i++){
         while (!IsEmptyPlaylist((*X).playlist[i])){
             Lagu val;
             DeleteLastPlaylist(&((*X).playlist[i]), &val);
@@ -81,4 +81,11 @@ void FreePlaylist(ListPlaylist* X){
     (*X).playlist_length = 0;
     (*X).playlist_size = MaxEl/20;
     free((*X).playlist);
+}
+
+void PrintListPlaylist(ListPlaylist X){
+    for (int i = 0; i < X.playlist_length; i++){
+        printf("%d. ", i + 1);
+        PrintPlaylist(X.playlist[i]);
+    }
 }
