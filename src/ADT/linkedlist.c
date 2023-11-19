@@ -258,7 +258,7 @@ void PrintPlaylist(NamaPlaylist L){
     Address P = L.list;
     int i = 1;
     while (P != NULL){
-        printf("%d. ", i);
+        printf("| %d. ", i);
         PrintWord((*P).lagu_playlist.lagu_nama);
         printf("\n");
         P = (*P).next;

@@ -2,15 +2,14 @@
 
 int main(){
     printf("---Function STARTINPUT---\n");
-    FILE* input = stdin;
-    STARTINPUT(stdin);
+    STARTINPUT();
     while (!IsEndWord()){
         PrintWord(GetWord());
         printf("\n");
-        ADVWORD();
+        ADVINPUT();
     } 
     printf("\n---Function STARTWORD---\n");
-    input = fopen("D:/Tugas Besar/src/driver/pitakar.txt", "r");
+    FILE* input = fopen("D:/Tugas Besar/src/driver/filekonfigurasi_b.txt", "r");
     STARTWORD(input);
     while (!IsEndWord()){
         PrintWord(GetWord());

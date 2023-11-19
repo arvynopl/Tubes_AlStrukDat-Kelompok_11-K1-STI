@@ -186,7 +186,7 @@ void PrintAlbum(Album A){
     PrintWord(A.album_nama);
     printf("\n");
     for (int i = 0; i < A.lagu_length; i++){
-        printf("  %d. ", i + 1);
+        printf("| | %d. ", i + 1);
         PrintLagu(A.lagu_album[i]);
     }
 }
@@ -195,7 +195,7 @@ void PrintPenyanyi(Penyanyi P){
     PrintWord(P.penyanyi_nama);
     printf("\n");
     for (int i = 0; i < P.album_length; i++){
-        printf(" %d. ", i + 1);
+        printf("| %d. ", i + 1);
         PrintAlbum(P.album_penyanyi[i]);
     }
 }

@@ -13,6 +13,8 @@ boolean IsFullHistori(HistoriLagu H);
 void Push(HistoriLagu* H, Lagu L);
 /* Mengeluarkan lagu sebagai elemen pada index top dari histori lagu*/
 void Pop(HistoriLagu* H, Lagu* L);
+/* Mengeluarkan hasil print dari isi HistoriLagu H */
+void PrintHistori(HistoriLagu H);
 
 #endif
 

@@ -64,7 +64,7 @@ Lagu Dequeue(QueueLagu* Q){
     }
 }
 
-void DisplayQueue(QueueLagu Q){
+void PrintQueue(QueueLagu Q){
     if (IsEmptyQueue(Q)){
         printf("[]\n");
     } else{
@@ -74,7 +74,6 @@ void DisplayQueue(QueueLagu Q){
             PrintWord(Q.lagu_queue[i].lagu_nama);
             printf("\n");
             j++;
-            i++;
             if (i == MaxEl){
                 i = 0;
             }
