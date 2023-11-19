@@ -25,19 +25,23 @@ void LOADPROG(FILE* input){
                 ADVWORD();
                 LP.penyanyi[i].album_penyanyi[j].lagu_album[k].lagu_nama = GetWord();
                 LP.penyanyi[i].album_penyanyi[j].lagu_album[k].album_id = j;
+                LP.penyanyi[i].album_penyanyi[j].lagu_album[k].penyanyi_id = k;
             }
         }
     }
 
     // Menyimpan data currSong
     ADVWORD();
-    Word temp = GetWord();
-    if (temp.TabWord[0] != '-'){
+    if (GetWord().TabWord[0] != '-'){
+        Word temp = GetWord();
+        currSong.penyanyi_id = IndexOfPenyanyiStr(LP, temp);
         ADVWORD();
+        currSong.album_id = IndexOfAlbumStr(LP, temp, GetWord());
         ADVWORD();
         currSong.lagu_nama = GetWord();
     } else{
         currSong.album_id = IDX_UNDEF;
+        currSong.penyanyi_id = IDX_UNDEF;
         currSong.lagu_nama.Length = 0;
         currSong.lagu_nama.TabWord[0] = STR_UNDEF;
     }
@@ -49,6 +53,7 @@ void LOADPROG(FILE* input){
         Lagu lagu_queue;
         ADVWORD();
         Word temp = GetWord();
+        lagu_queue.penyanyi_id = IndexOfPenyanyiStr(LP, temp);
         ADVWORD();
         lagu_queue.album_id = IndexOfAlbumStr(LP, temp, GetWord());
         ADVWORD();
@@ -63,6 +68,7 @@ void LOADPROG(FILE* input){
         Lagu lagu_stack;
         ADVWORD();
         Word temp = GetWord();
+        lagu_stack.penyanyi_id = IndexOfPenyanyiStr(LP, temp);
         ADVWORD();
         lagu_stack.album_id = IndexOfAlbumStr(LP, temp, GetWord());
         ADVWORD();
@@ -86,6 +92,7 @@ void LOADPROG(FILE* input){
             Lagu lagu_playlist;
             ADVWORD();
             Word temp = GetWord();
+            lagu_playlist.penyanyi_id = IndexOfPenyanyiStr(LP, temp);
             ADVWORD();
             lagu_playlist.album_id = IndexOfAlbumStr(LP, temp, GetWord());
             ADVWORD();

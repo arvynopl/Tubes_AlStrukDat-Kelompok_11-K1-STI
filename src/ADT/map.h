@@ -32,6 +32,8 @@ int IndexOfAlbum(Penyanyi P, Album A);
 int IndexOfAlbumStr(ListPenyanyi LP, Word PenyanyiNama, Word AlbumNama);
 /* Mendapatkan indeks sebuah Penyanyi pada List Penyanyi  */
 int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P);
+/* Mendapatkan indeks sebuah Penyanyi berdasarkan input nama penyanyi */
+int IndexOfPenyanyiStr(ListPenyanyi LP, Word PenyanyiNama);
 /* Mengembalikan nilai value Lagu dengan Key K dari Album A */
 Lagu ValueMapLagu(Album A, Key K);
 /* Mengembalikan nilai value Album dengan Key K dari Penyanyi P */

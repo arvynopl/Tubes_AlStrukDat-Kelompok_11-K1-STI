@@ -83,6 +83,19 @@ int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P){
     }
     return IDX_UNDEF;
 }
+
+/* Mendapatkan indeks sebuah Penyanyi berdasarkan input nama penyanyi */
+int IndexOfPenyanyiStr(ListPenyanyi LP, Word PenyanyiNama){
+    int i = 0;
+    while (i < LP.penyanyi_length){
+        if (WordCompare(LP.penyanyi[i].penyanyi_nama, PenyanyiNama)){
+            return i;
+        }
+        i++;
+    }
+    return IDX_UNDEF;
+}
+
 /* Mengembalikan nilai value Lagu dengan Key K dari Album A */
 Lagu ValueMapLagu(Album A, Key K){
     if (!IsEmptyMapLagu(A)){
@@ -96,6 +109,7 @@ Lagu ValueMapLagu(Album A, Key K){
         }
     }
 }
+
 /* Mengembalikan nilai value Album dengan Key K dari Penyanyi P */
 Album ValueMapAlbum(Penyanyi P, Key K){
     if (!IsEmptyMapAlbum(P)){
@@ -106,14 +120,18 @@ Album ValueMapAlbum(Penyanyi P, Key K){
             defalbum.album_nama.TabWord[0] = STR_UNDEF;
             defalbum.album_nama.Length = 0;
             defalbum.lagu_length = IDX_UNDEF;
+            defalbum.penyanyi_id = IDX_UNDEF;
             Lagu deflagu;
             deflagu.lagu_nama.TabWord[0] = STR_UNDEF;
             deflagu.lagu_nama.Length = 0;
+            deflagu.album_id = IDX_UNDEF;
+            deflagu.penyanyi_id = IDX_UNDEF;
             defalbum.lagu_album[0] = deflagu;
             return defalbum;
         }
     }
 }
+
 /* Menambahkan array of character (Title) ST sebagai value elemen Album A dengan Key K. */
 void InsertMapLagu(Album* A, Lagu val){
     if (!IsFullMapLagu(*A)){
@@ -134,6 +152,7 @@ void InsertMapLagu(Album* A, Lagu val){
         }
     }
 }
+
 /* Menambahkan array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
 void InsertMapAlbum(Penyanyi *P, Album val){
     if (!IsFullMapAlbum(*P)){
@@ -154,6 +173,7 @@ void InsertMapAlbum(Penyanyi *P, Album val){
         }
     }
 }
+
 /* Menghapus array of character (Title) ST sebagai value elemen Album A dengan Key K. */
 void DeleteMapLagu(Album *A, Key K){
     if (!IsEmptyMapLagu(*A)){
@@ -165,6 +185,7 @@ void DeleteMapLagu(Album *A, Key K){
         }
     }
 }
+
 /* Menghapus array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
 void DeleteMapAlbum(Penyanyi *P, Key K){
     if (!IsEmptyMapAlbum(*P)){
@@ -205,4 +226,5 @@ void PrintListPenyanyi(ListPenyanyi LP){
         printf("%d. ", i + 1);
         PrintPenyanyi(LP.penyanyi[i]);
     }
+    printf("\n");
 }

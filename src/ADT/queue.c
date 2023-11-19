@@ -65,9 +65,7 @@ Lagu Dequeue(QueueLagu* Q){
 }
 
 void PrintQueue(QueueLagu Q){
-    if (IsEmptyQueue(Q)){
-        printf("[]\n");
-    } else{
+    if (!IsEmptyQueue(Q)){
         int j = 1;
         for (int i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
             printf("%d. ", j);
@@ -79,4 +77,5 @@ void PrintQueue(QueueLagu Q){
             }
         }
     }
+    printf("\n");
 }
