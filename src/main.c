@@ -20,5 +20,7 @@ int main(){
     LOADPROG(input);
     DisplayAll();
     SAVEPROG();
+    LISTDEFAULT();
+    LISTPLAYLIST();
     return 0;
 }

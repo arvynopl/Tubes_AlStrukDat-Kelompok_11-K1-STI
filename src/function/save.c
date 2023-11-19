@@ -55,7 +55,7 @@ void SAVEPROG(){
             }
         }
     } else{
-        fprintf(input, "-");
+        fprintf(input, "-\n");
     }
 
     // Menuliskan jumlah record lagu dalam queue
