@@ -3,45 +3,110 @@
 boolean endWord;
 Word currentWord;
 
-void IgnoreBlanks(){
-    while (currentChar == BLANK){
+void IgnoreSeparators(){
+    while (currentChar == BLANK || currentChar == COLON){
         ADV();
     }
 }
 
 void STARTWORD(FILE *input){
     START(input);
-    IgnoreBlanks();
-    if (currentChar == MARK){
-        endWord = true;
-    }
-    else{
+    IgnoreSeparators();
+    if (IsEOP()){
+        ADV();
         endWord = false;
         CopyWord();
+    } else{
+        if (IsEOF()){
+            endWord = true;
+        } else{
+            endWord = false;
+            CopyWord();
+        }
     }
 }
 
 void STARTINPUT(){
     currentWord = ToKata("");
-    STARTWORD(stdin);
-}
-
-void ADVWORD(){
-    IgnoreBlanks();
+    START(stdin);
+    IgnoreSeparators();
     if (currentChar == MARK){
         endWord = true;
     }
     else{
         endWord = false;
         CopyWord();
-        IgnoreBlanks();
+    }
+}
+
+void ADVWORD(){
+    IgnoreSeparators();
+    if (IsEOP()){
+        ADV();
+        if (IsEOF()){
+            endWord = true;
+        } else{
+            endWord = false;
+            CopyWord();
+            IgnoreSeparators();
+        }
+    } else{
+        if (IsEOF()){
+            endWord = true;
+        } else{
+            endWord = false;
+            CopyWord();
+            IgnoreSeparators();
+        }
+    }
+}
+
+void ADVWORDNOSPACE(){
+    IgnoreSeparators();
+    if (IsEOP()){
+        ADV();
+        endWord = false;
+        CopyWordNoSpace();
+        IgnoreSeparators();
+    } else{
+        if (IsEOF()){
+            endWord = true;
+        } else{
+            endWord = false;
+            CopyWordNoSpace();
+            IgnoreSeparators();
+        }
+    }
+}
+
+void ADVINPUT(){
+    IgnoreSeparators();
+    if (currentChar == MARK){
+        endWord = true;
+    }
+    else{
+        endWord = false;
+        CopyWord();
+        IgnoreSeparators();
     }
 }
 
 void CopyWord(){
     currentWord.Length = 0;
-    while (currentChar != BLANK && currentChar != MARK){
-        if (currentWord.Length < (MaxEl/2)){
+    while (currentChar != COLON && currentChar != MARK){
+        if (currentWord.Length < (MaxEl)){
+            currentWord.TabWord[currentWord.Length++] = currentChar;
+            ADV();
+        }
+        else
+            break;
+    }
+}
+
+void CopyWordNoSpace(){
+    currentWord.Length = 0;
+    while (currentChar != BLANK && currentChar != COLON && currentChar != MARK){
+        if (currentWord.Length < (MaxEl)){
             currentWord.TabWord[currentWord.Length++] = currentChar;
             ADV();
         }

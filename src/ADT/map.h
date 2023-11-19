@@ -28,6 +28,8 @@ boolean IsMemberMapAlbum(Penyanyi P, Key K);
 /* ### Operator Dasar Map ### */
 /* Mendapatkan indeks sebuah Album pada Penyanyi */
 int IndexOfAlbum(Penyanyi P, Album A);
+/* Mendapatkan indeks sebuah Album berdasarkan input nama penyanyi dan album */
+int IndexOfAlbumStr(ListPenyanyi LP, Word PenyanyiNama, Word AlbumNama);
 /* Mendapatkan indeks sebuah Penyanyi pada List Penyanyi  */
 int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P);
 /* Mengembalikan nilai value Lagu dengan Key K dari Album A */

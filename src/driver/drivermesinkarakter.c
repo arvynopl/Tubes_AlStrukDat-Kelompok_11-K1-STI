@@ -1,47 +1,31 @@
 #include "../ADT/mesinkarakter.h"
 
-int main() {
-    char inputMode;
-    printf("Pilih mode input ('f' untuk file, 't' untuk terminal): ");
-    scanf(" %c", &inputMode);
-
-    if(inputMode == 'f'){
-        START('f');
-
-        while(!IsEOP()){
-            printf("Karakter : ");
-            printf("%c\n", GetCC());
-            ADV();
-        }
-
-        printf("Karakter sudah habis.\n");
-        CLOSE();
+int main(){
+    FILE* input = stdin;
+    START(input);
+    while (!IsEOP()){
+        printf("Karakter: %c\n", GetCC());
+        ADV();
     }
-    else if (inputMode == 't') {
-        FILE *input;
-        tambahKata();
+    CLOSE();
+    printf("Karakter dalam terminal sudah habis...\n");
 
-        if (pita != NULL) {
-            while (!IsEOP()) {
-                printf("Karakter : %c\n", GetCC());
-                ADV();
-            }
-
-            printf("Karakter sudah habis.\n");
-        }
+    input = fopen("D:/Tugas Besar/src/driver/pitakar.txt", "r");
+    START(input);
+    while (!IsEOF()){
+        printf("Karakter: %c\n", GetCC());
+        ADV();
     }
-    return 0;
+    CLOSE();
+    printf("Karakter dalam file sudah habis...\n");
 }
 
 /*
-
 ============CONTOH HASIL KELUARAN============
-
 Karakter : t
 Karakter : u
 Karakter : b
 Karakter : e
 Karakter : s
 Karakter sudah habis.
-
 */

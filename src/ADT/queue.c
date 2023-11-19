@@ -2,16 +2,16 @@
 #include "queue.h"
 
 /* ADT Queue yang dapat digunakan */
-boolean IsEmpty(QueueLagu Q){
+boolean IsEmptyQueue(QueueLagu Q){
     return (Q.idxHead == IDX_UNDEF && Q.idxTail == IDX_UNDEF);
 }
 
-boolean IsFull(QueueLagu Q){
+boolean IsFullQueue(QueueLagu Q){
     return((Q.idxHead == Q.idxTail + 1) || (Q.idxHead == 0 && Q.idxTail == MaxEl - 1));
 }
 
-int Length(QueueLagu Q){
-    if (IsEmpty(Q)){
+int LengthOfQueue(QueueLagu Q){
+    if (IsEmptyQueue(Q)){
         return 0;
     } else if (Q.idxTail >= Q.idxHead){
         return(Q.idxTail - Q.idxHead + 1);
@@ -27,8 +27,8 @@ void CreateQueue(QueueLagu* Q){
 
 
 void Enqueue(QueueLagu* Q, Lagu X){
-    if (!IsFull(*Q)){
-        if (IsEmpty(*Q)){
+    if (!IsFullQueue(*Q)){
+        if (IsEmptyQueue(*Q)){
             (*Q).idxHead = 0;
             (*Q).idxTail = 0;
         } else {
@@ -44,7 +44,7 @@ void Enqueue(QueueLagu* Q, Lagu X){
 }
 
 Lagu Dequeue(QueueLagu* Q){
-    if (!IsEmpty(*Q)){
+    if (!IsEmptyQueue(*Q)){
         Lagu X = (*Q).lagu_queue[(*Q).idxHead];
         if ((*Q).idxHead == (*Q).idxTail){
             (*Q).idxHead = IDX_UNDEF;
@@ -64,17 +64,16 @@ Lagu Dequeue(QueueLagu* Q){
     }
 }
 
-void DisplayQueue(QueueLagu Q){
-    if (IsEmpty(Q)){
+void PrintQueue(QueueLagu Q){
+    if (IsEmptyQueue(Q)){
         printf("[]\n");
     } else{
         int j = 1;
         for (int i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
             printf("%d. ", j);
-            PrintWord(Q.lagu_queue[i]);
+            PrintWord(Q.lagu_queue[i].lagu_nama);
             printf("\n");
             j++;
-            i++;
             if (i == MaxEl){
                 i = 0;
             }

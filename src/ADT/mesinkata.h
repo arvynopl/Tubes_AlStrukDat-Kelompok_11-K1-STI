@@ -8,7 +8,7 @@
 extern boolean EndWord;
 extern Word currentWord;
 
-void IgnoreBlanks();
+void IgnoreSeparators();
 /* Mengabaikan satu atau beberapa BLANK
     I.S. : currentChar sembarang
     F.S. : currentChar ≠ BLANK atau currentChar = MARK */
@@ -26,6 +26,8 @@ void STARTINPUT();
         currentChar karakter pertama sesudah karakter terakhir kata */
 
 void ADVWORD();
+void ADVWORDNOSPACE();
+void ADVINPUT();
 /*  I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
     F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
         currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
@@ -33,6 +35,7 @@ void ADVWORD();
     Proses : Akuisisi kata menggunakan procedure SalinWord */
 
 void CopyWord();
+void CopyWordNoSpace();
 /* Mengakuisisi kata, menyimpan dalam currentWord
    I.S. : currentChar adalah karakter pertama dari kata
    F.S. : currentWord berisi kata yang sudah diakuisisi;
