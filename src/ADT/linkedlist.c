@@ -324,7 +324,7 @@ void remove(ListPlaylist *L, int urutan, int id){
         (*prevsong).next = (*song).next;
     }
 
-    Dealokasi(song);
+    Dealokasi(&song);
 }
 
 void delete(ListPlaylist *L, int id) {
@@ -336,7 +336,7 @@ void delete(ListPlaylist *L, int id) {
     NamaPlaylist *p = &((*L).playlist[id]);
 
     
-    free(p->playlist_name.TabWord);
+    free(p->playlist_nama.TabWord);
 
     
     Address current = p->list;
