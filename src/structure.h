@@ -122,6 +122,7 @@ struct lagu currSong;
 struct queue Queue;
 struct stack Histori;
 struct listplaylist ListPL;
+boolean IsON;
 
 /* ### Default State ### */
 

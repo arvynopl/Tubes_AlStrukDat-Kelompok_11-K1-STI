@@ -17,10 +17,11 @@ void DisplayAll(){
 
 int main(){
     FILE* input = fopen("D:/Tugas Besar/src/driver/filekonfigurasi_b.txt", "r");
+    IsON = false;
+    LOADPROG(input);
+    STARTPROG(input);
     LOADPROG(input);
     DisplayAll();
     SAVEPROG();
-    LISTDEFAULT();
-    LISTPLAYLIST();
     return 0;
 }

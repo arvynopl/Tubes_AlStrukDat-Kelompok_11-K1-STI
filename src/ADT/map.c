@@ -103,6 +103,8 @@ Lagu ValueMapLagu(Album A, Key K){
             return A.lagu_album[K];
         } else{
             Lagu deflagu;
+            deflagu.album_id = IDX_UNDEF;
+            deflagu.penyanyi_id = IDX_UNDEF;
             deflagu.lagu_nama.TabWord[0] = STR_UNDEF;
             deflagu.lagu_nama.Length = 0;
             return deflagu;
@@ -196,6 +198,39 @@ void DeleteMapAlbum(Penyanyi *P, Key K){
             (*P).album_length--;
         }
     }
+}
+
+boolean CheckPenyanyi (ListPenyanyi LP, Word NamaPenyanyi){
+    boolean found = false;
+    for (int i = 0; i < LP.penyanyi_length; i++){
+        if (WordCompare(LP.penyanyi[i].penyanyi_nama, NamaPenyanyi)){
+            found = true;
+            break;
+        }
+    }
+    return found;
+}
+
+boolean CheckAlbum(Penyanyi P, Word NamaAlbum){
+    boolean found = false;
+    for (int i = 0; i < P.album_length; i++){
+        if (WordCompare(P.album_penyanyi[i].album_nama, NamaAlbum)){
+            found = true;
+            break;
+        }
+    }
+    return found;
+}
+
+boolean CheckLagu(Album A, Word NamaLagu){
+    boolean found = false;
+    for (int i = 0; i < A.lagu_length; i++){
+        if (WordCompare(A.lagu_album[i].lagu_nama, NamaLagu)){
+            found = true;
+            break;
+        }
+    }
+    return found;
 }
 
 void PrintLagu(Lagu L){
