@@ -337,7 +337,7 @@ void delete(ListPlaylist *L, int id) {
     NamaPlaylist *p = &((*L).playlist[id]);
 
     
-    free(p->playlist_name.TabWord);
+    free(p->playlist_nama.TabWord);
 
     
     Address current = p->list;
