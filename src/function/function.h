@@ -4,14 +4,22 @@
 #include "../structure.h"
 #include "../ADT/adt.h"
 
-void DisplayAll();
-
+/* ### FUNGSI UTAMA (COMMAND) ### */
+/* Command START */
 void STARTPROG(FILE* input);
 
+/* Command LOAD */
 void LOADPROG(FILE* input);
 
+/* Command SAVE */
 void SAVEPROG();
 
-void LIST();
+/* Command LIST */
+void LISTDEFAULT();
+void LISTPLAYLIST();
+
+/* ### FUNGSI TAMBAHAN ### */
+/* Fungsi cek isi struktur data */
+void DisplayAll();
 
 #endif
