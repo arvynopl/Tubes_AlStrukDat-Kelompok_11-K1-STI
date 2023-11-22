@@ -299,7 +299,7 @@ void swap(ListPlaylist* L, int idx0, int idx1, int idx2){
     printf("Songs swapped successfully\n");
 }
 
-void remove(ListPlaylist *L, int urutan, int id){
+void removeSong(ListPlaylist *L, int urutan, int id){
     if (id < 0 || id >= (*L).playlist_length){
         printf("Error\n");
     }

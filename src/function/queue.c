@@ -125,6 +125,7 @@ void QUEUESWAP(){
 
         int n = LengthOfQueue(Queue);
         if (x < 0 || x >= n || y < 0 || y >= n){
+<<<<<<< HEAD
             if ((x < 0 || x >= n) && (y < 0 || y >= n)){
                 if (y < 0 || y >= n){
                     printf("Lagu dengan urutan ke-%d dan %d tidak terdapat dalam queue. Silakan coba lagi.", (x+1), (y+1));
@@ -133,6 +134,12 @@ void QUEUESWAP(){
                 }
             } else if (y < 0 || y >= n){
                 printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", (y+1));
+=======
+            if (x < 0 || x >= n){
+                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", x);
+            } else if (y < 0 || y >= n){
+                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", y);
+>>>>>>> 1f56e1ddb5317a02289b38ee2992046d4d69fc07
             }
         } else{
             x += Queue.idxHead;
@@ -235,4 +242,8 @@ void QUEUECLEAR(){
     printf("\n");
     CONSOLE();
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1f56e1ddb5317a02289b38ee2992046d4d69fc07
