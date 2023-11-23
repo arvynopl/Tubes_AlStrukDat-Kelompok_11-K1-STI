@@ -24,8 +24,8 @@ void PLAYPLAYLIST();
 /* Command QUEUE */
 void QUEUESONG();
 void QUEUEPLAYLIST();
-void QUEUESWAP();
-void QUEUEREMOVE();
+void QUEUESWAP(int x, int y);
+void QUEUEREMOVE(int id);
 void QUEUECLEAR();
 
 /* Command SONG */
@@ -36,15 +36,15 @@ void SONGPREVIOUS();
 void PLAYLISTCREATE();
 void PLAYLISTADDSONG();
 void PLAYLISTADDALBUM();
-void PLAYLISTSWAP();
-void PLAYLISTREMOVE();
+void PLAYLISTSWAP(int id, int x, int y);
+void PLAYLISTREMOVE(int id, int n);
 void PLAYLISTDELETE();
 
 /* Command STATUS */
 void STATUS();
 
 /* Command SAVE */
-void SAVEPROG();
+void SAVEPROG(FILE* input);
 
 /* Command QUIT */
 void QUITPROG();

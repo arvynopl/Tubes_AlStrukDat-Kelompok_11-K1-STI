@@ -8,7 +8,19 @@ void QUITPROG(){
         ans = ToUpper(GetWord());
 
         if ((ans.TabWord[0] == 'Y') && (ans.Length = 1)){
-            SAVEPROG();
+            Word ans;
+            printf("\nMasukkan nama file sebagai lokasi penyimpanan data: ");
+            STARTINPUT();
+            ans = GetWord();
+
+            Word dir;
+            dir = ToKata("save/");
+            ConcatWordNoSpace(&dir, ans);
+
+            char* file = WordToStr(dir);
+
+            FILE* input = fopen(file, "w");
+            SAVEPROG(input);
             IsON = false;
             printf("Kamu keluar dari WayangWave.\n");
             exit(0);

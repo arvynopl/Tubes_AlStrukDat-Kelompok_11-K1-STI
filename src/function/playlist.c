@@ -223,25 +223,11 @@ void PLAYLISTADDALBUM(){
 
 }
 
-void PLAYLISTSWAP(){
+void PLAYLISTSWAP(int id, int x, int y){
     if (IsON){
-        int rep;
-        printf("Masukkan ID playlist yang berisikan lagu yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int id = rep;
         id--;
-        printf("\nMasukkan ID lagu pertama yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int x = rep;
         x--;
-        printf("\nMasukkan ID lagu kedua yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int y = rep;
         y--;
-        printf("\n");
 
         if ((id < 0) || (id >= ListPL.playlist_length)){
             printf("Tidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", id + 1);
@@ -291,20 +277,10 @@ void PLAYLISTSWAP(){
 
 }
 
-void PLAYLISTREMOVE(){
+void PLAYLISTREMOVE(int id, int n){
     if (IsON){
-        int rep;
-        printf("Masukkan ID playlist yang berisikan lagu yang ingin dihapus: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int id = rep;
         id--;
-        printf("\nMasukkan ID lagu yang ingin dihapus: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int n = rep;
         n--;
-        printf("\n");
 
         if ((id < 0) || (id >= ListPL.playlist_length)){
             printf("Tidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", id + 1);
