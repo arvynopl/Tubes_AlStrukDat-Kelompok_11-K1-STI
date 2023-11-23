@@ -140,17 +140,15 @@ void InsertMapLagu(Album* A, Lagu val){
         int i = 0;
         boolean found = false;
         while (i < (*A).lagu_length){
-            if (((*A).lagu_album[i].album_id == val.album_id) && (WordCompare((*A).lagu_album[i].lagu_nama, val.lagu_nama))){
+            if (WordCompare((*A).lagu_album[i].lagu_nama, val.lagu_nama)){
                 found = true;
                 break;
             }
             i++;  
         }
-        if (!found){
+        if (found){
             (*A).lagu_album[(*A).lagu_length] = val;
             (*A).lagu_length++;
-        } else{
-            printf("Error...\n");
         }
     }
 }

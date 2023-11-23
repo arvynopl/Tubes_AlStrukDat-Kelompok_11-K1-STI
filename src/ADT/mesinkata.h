@@ -92,4 +92,11 @@ Word ToLower(Word kata);
 Word ToUpper(Word kata);
 // /* Mengubah kata yang merupakan huruf kecil menjadi huruf kapital */
 
+boolean CheckValidInput(Word kata);
+
+void SplitCommandThreeInt(Word* kata, int* id1, int* id2, int* id3);
+void SplitCommandTwoInt(Word* kata, int* id1, int* id2);
+void SplitCommandOneInt(Word* kata, int* id1);
+void SplitCommandWords(Word* kata1, Word* kata2);
+
 #endif
