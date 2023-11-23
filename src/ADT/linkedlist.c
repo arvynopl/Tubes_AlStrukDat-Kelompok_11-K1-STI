@@ -266,3 +266,16 @@ void PrintPlaylist(NamaPlaylist L){
         i++;
     }
 }
+
+boolean CheckLaguPlaylist(NamaPlaylist L, Lagu val){
+    Address P = L.list;
+    boolean found = false;
+    while (P != Nil){
+        if (WordCompare((*P).lagu_playlist.lagu_nama, val.lagu_nama)){
+            found = true;
+            break;
+        }
+        P = (*P).next;
+    }
+    return found;
+}

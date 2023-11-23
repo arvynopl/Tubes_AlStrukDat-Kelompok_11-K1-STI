@@ -18,7 +18,9 @@ void ResizeBiggerListPlaylist(ListPlaylist* X);
 
 void ResizeSmallerListPlaylist(ListPlaylist* X);
 
-void FreePlaylist(ListPlaylist* X);
+void FreeListPlaylist(ListPlaylist* X);
+
+void FreePlaylist(ListPlaylist* P, NamaPlaylist* X);
 
 void PrintListPlaylist(ListPlaylist X);
 
