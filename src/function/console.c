@@ -75,6 +75,7 @@ void CONSOLE(){
     
     Word ans1;
     Word ans2;
+    Word ans3;
     int id1, id2, id3;
     printf("\nKetik command disini: ");
     STARTCOMMAND();
@@ -102,6 +103,10 @@ void CONSOLE(){
             id1 = WordToInt(GetWord());
             ADVINPUT();
             id2 = WordToInt(GetWord());
+        } else if (WordCompare(ans1, ToKata("PLAYLIST")) && WordCompare(ans2, ToKata("ADD"))){
+            ADVINPUT();
+            ans3 = ToUpper(GetWord());
+            ConcatWord(&ans2, ans3);
         }
         ConcatWord(&ans1, ans2);
         printf("\n");
@@ -144,6 +149,10 @@ void CONSOLE(){
                 id1 = WordToInt(GetWord());
                 ADVINPUT();
                 id2 = WordToInt(GetWord());
+            } else if (WordCompare(ans1, ToKata("PLAYLIST")) && WordCompare(ans2, ToKata("ADD"))){
+                ADVINPUT();
+                ans3 = ToUpper(GetWord());
+                ConcatWord(&ans2, ans3);
             }
             ConcatWord(&ans1, ans2);
             printf("\n");
