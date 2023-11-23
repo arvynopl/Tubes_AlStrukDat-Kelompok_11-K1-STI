@@ -81,7 +81,7 @@ void PLAYLISTADDSONG(){
                 printf("\n");
 
                 if (idtemp < 0 || idtemp >= LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length){
-                    printf("Tidak ada lagu dengan playlist ID %d. Silakan coba lagi.\n", idtemp + 1);
+                    printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", idtemp + 1);
 
                 } else{
                     Lagu addlagu = LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idtemp];
