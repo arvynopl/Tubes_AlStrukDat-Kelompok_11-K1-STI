@@ -125,7 +125,6 @@ void QUEUESWAP(){
 
         int n = LengthOfQueue(Queue);
         if (x < 0 || x >= n || y < 0 || y >= n){
-<<<<<<< HEAD
             if ((x < 0 || x >= n) && (y < 0 || y >= n)){
                 if (y < 0 || y >= n){
                     printf("Lagu dengan urutan ke-%d dan %d tidak terdapat dalam queue. Silakan coba lagi.", (x+1), (y+1));
@@ -134,12 +133,6 @@ void QUEUESWAP(){
                 }
             } else if (y < 0 || y >= n){
                 printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", (y+1));
-=======
-            if (x < 0 || x >= n){
-                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", x);
-            } else if (y < 0 || y >= n){
-                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", y);
->>>>>>> 1f56e1ddb5317a02289b38ee2992046d4d69fc07
             }
         } else{
             x += Queue.idxHead;
@@ -175,7 +168,7 @@ void QUEUESWAP(){
 void QUEUEREMOVE(){
     if (IsON){
         int rep;
-        printf("Masukkan ID lagu yang ingin dihapus: ");
+        printf("Masukkan urutan lagu yang ingin dihapus: ");
         STARTINPUT();
         rep = WordToInt(GetWord());
         int id = rep;
@@ -184,7 +177,7 @@ void QUEUEREMOVE(){
 
         if (!IsEmptyQueue(Queue)){
             if (id < 0 || id >= LengthOfQueue(Queue)){
-                printf("Lagu dengan urutan ke-%d tidak ada.\n", id);
+                printf("Lagu dengan urutan ke-%d tidak ada.\n", (id+1));
             } else{
                 if (Queue.idxHead == Queue.idxTail){
                     Queue.idxHead = IDX_UNDEF;
@@ -242,8 +235,4 @@ void QUEUECLEAR(){
     printf("\n");
     CONSOLE();
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1f56e1ddb5317a02289b38ee2992046d4d69fc07
