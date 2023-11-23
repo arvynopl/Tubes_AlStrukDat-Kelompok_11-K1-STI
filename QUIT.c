@@ -1,44 +1,29 @@
-#include <stdio.h>
-#include "QUIT.h"
+#include "function.h"
 
-/*TEMPORARY FUNCTION*/
-void SAVE(){
-    printf("Saving..\n");
-}
+void QUITPROG(){
+    if (IsON){
+        Word ans;
+        printf("Apakah kamu ingin menyimpan data sesi sekarang?(Y/N): ");
+        STARTINPUT();
+        ans = ToUpper(GetWord());
 
-void QUIT(){
-    printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N) ? ");
-
-    Word answer;
-    scanf("%s", answer.TabWord);
-    int count = 0;
-    int i = 0;
-    while (i != MaxEl && answer.TabWord[i] != STR_UNDEF){
-        if (answer.TabWord[i] != STR_UNDEF){
-            count += 1;
+        if ((ans.TabWord[0] == 'Y') && (ans.Length = 1)){
+            SAVEPROG();
+            IsON = false;
+            printf("Kamu keluar dari WayangWave.\n");
+            exit(0);
+        } else if ((ans.TabWord[0] == 'N') && (ans.Length = 1)){
+            IsON = false;
+            printf("Kamu keluar dari WayangWave.\n");
+            exit(0);
+        } else{
+            printf("Input selain Y/N adalah invalid. Silakan coba lagi.\n");
+            printf("\n");
         }
-        i += 1;
-    }
-    answer.Length = count;
 
-    Word YES;
-    YES = ToKata("Y");
-    YES.Length = StringLength("Y");
+    } else{
+        printf("Anda belum masuk ke dalam program...\n");
+        printf("\n");
+    }
 
-    Word NO;
-    NO = ToKata("N");
-    NO.Length = StringLength("N");
-
-    if (WordCompare(answer,YES)){
-        SAVE();
-        printf("Kamu keluar dari WayangWave.\n");
-        exit(0);
-    }
-    else if (WordCompare(answer,NO)){
-        printf("Kamu keluar dari WayangWave.\n");
-        exit(0);
-    }
-    else{
-        QUIT();
-    }
 }

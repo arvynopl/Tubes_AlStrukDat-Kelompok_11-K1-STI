@@ -1,96 +1,7 @@
-#include <stdio.h>
-#include "INVALIDCOMMAND.h"
+#include "function.h"
 
-boolean INVALIDCOMMAND(boolean isMasuk, Word input){
-    Word start;
-    start = ToKata("START");
-    start.Length = StringLength("START");
-
-    Word load;
-    load = ToKata("LOAD");
-    load.Length = StringLength("LOAD");
-
-    Word help;
-    help = ToKata("HELP");
-    help.Length = StringLength("HELP");
-
-    Word listDefault;
-    listDefault = ToKata("LIST DEFAULT");
-    listDefault.Length = StringLength("LIST DEFAULT");
-
-    Word listPlaylist;
-    listPlaylist = ToKata("LIST PLAYLIST");
-    listPlaylist.Length = StringLength("LIST PLAYLIST");
-
-    Word playSong;
-    playSong = ToKata("PLAY SONG");
-    playSong.Length = StringLength("PLAY SONG");
-
-    Word playPlaylist;
-    playPlaylist = ToKata("PLAY PLAYLIST");
-    playPlaylist.Length = StringLength("PLAY PLAYLIST");
-
-    Word queueSong;
-    queueSong = ToKata("QUEUE SONG");
-    queueSong.Length = StringLength("QUEUE SONG");
-
-    Word queuePlaylist;
-    queuePlaylist = ToKata("QUEUE PLAYLIST");
-    queuePlaylist.Length = StringLength("QUEUE PLAYLIST");
-
-    Word queueSwap;
-    queueSwap = ToKata("QUEUE SWAP");
-    queueSwap.Length = StringLength("QUEUE SWAP");
-
-    Word queueRemove;
-    queueRemove = ToKata("QUEUE REMOVE");
-    queueRemove.Length = StringLength("QUEUE REMOVE");
-
-    Word queueClear;
-    queueClear = ToKata("QUEUE CLEAR");
-    queueClear.Length = StringLength("QUEUE CLEAR");
-
-    Word songNext;
-    songNext = ToKata("SONG NEXT");
-    songNext.Length = StringLength("SONG NEXT");
-
-    Word songPrevious;
-    songPrevious = ToKata("SONG PREVIOUS");
-    songPrevious.Length = StringLength("SONG PREVIOUS");
-
-    Word playlistCreate;
-    playlistCreate = ToKata("PLAYLIST CREATE");
-    playlistCreate.Length = StringLength("PLAYLIST CREATE");
-
-    Word playlistAdd;
-    playlistAdd = ToKata("PLAYLIST ADD");
-    playlistAdd.Length = StringLength("PLAYLIST ADD");
-
-    Word playlistSwap;
-    playlistSwap = ToKata("PLAYLIST SWAP");
-    playlistSwap.Length = StringLength("PLAYLIST SWAP");
-
-    Word playlistRemove;
-    playlistRemove = ToKata("PLAYLIST REMOVE");
-    playlistRemove.Length = StringLength("PLAYLIST REMOVE");
-
-    Word playlistDelete;
-    playlistDelete = ToKata("PLAYLIST DELETE");
-    playlistDelete.Length = StringLength("PLAYLIST DELETE");
-
-    Word status;
-    status = ToKata("STATUS");
-    status.Length = StringLength("STATUS");
-
-    Word save;
-    save = ToKata("SAVE");
-    save.Length = StringLength("SAVE");
-
-    Word quit;
-    quit = ToKata("QUIT");
-    quit.Length = StringLength("QUIT");
-
-    if(isMasuk){
+boolean INVALIDCOMMAND(Word input, Word displayAll, Word start, Word load, Word help, Word listDefault, Word listPlaylist, Word playSong, Word playPlaylist, Word queueSong, Word queuePlaylist, Word queueSwap, Word queueRemove, Word queueClear, Word songNext, Word songPrevious, Word playlistCreate, Word playlistAddSong, Word playlistAddAlbum, Word playlistSwap, Word playlistRemove, Word playlistDelete, Word status, Word save, Word quit){
+    if(IsON){
         if(WordCompare(input,start)){
             printf("Command tidak bisa dieksekusi!\n");
             return true;
@@ -138,7 +49,10 @@ boolean INVALIDCOMMAND(boolean isMasuk, Word input){
         else if(WordCompare(input,playlistCreate)){
             return false;
         }
-        else if(WordCompare(input,playlistAdd)){
+        else if(WordCompare(input,playlistAddSong)){
+            return false;
+        }
+        else if(WordCompare(input,playlistAddAlbum)){
             return false;
         }
         else if(WordCompare(input,playlistSwap)){
@@ -157,6 +71,9 @@ boolean INVALIDCOMMAND(boolean isMasuk, Word input){
             return false;
         }
         else if(WordCompare(input,quit)){
+            return false;
+        }
+        else if(WordCompare(input,displayAll)){
             return false;
         }
         else{
@@ -222,7 +139,11 @@ boolean INVALIDCOMMAND(boolean isMasuk, Word input){
             printf("Command tidak bisa dieksekusi!\n");
             return true;
         }
-        else if(WordCompare(input,playlistAdd)){
+        else if(WordCompare(input,playlistAddSong)){
+            printf("Command tidak bisa dieksekusi!\n");
+            return true;
+        }
+        else if(WordCompare(input,playlistAddAlbum)){
             printf("Command tidak bisa dieksekusi!\n");
             return true;
         }
@@ -249,6 +170,9 @@ boolean INVALIDCOMMAND(boolean isMasuk, Word input){
         else if(WordCompare(input,quit)){
             printf("Command tidak bisa dieksekusi!\n");
             return true;
+        }
+        else if(WordCompare(input,displayAll)){
+            return false;
         }
         else{
             printf("Command tidak diketahui!\n");
