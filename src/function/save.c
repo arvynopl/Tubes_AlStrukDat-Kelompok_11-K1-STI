@@ -1,24 +1,7 @@
 #include "function.h"
 
-void SAVEPROG(){
+void SAVEPROG(FILE* input){
     if (IsON){
-        Word ans;
-        printf("Masukkan nama file (tanpa extension) sebagai lokasi penyimpanan data: ");
-        STARTINPUT();
-        ans = GetWord();
-        
-        Word dir;
-        dir = ToKata("save/");
-        Word txt;
-        txt = ToKata(".txt");
-        ConcatWord(&dir, ans);
-        ConcatWord(&dir, txt);
-
-        char* file = WordToStr(dir);
-
-        FILE* input = fopen(file, "w");
-        printf("\n");
-
         // Menuliskan banyak penyanyi
         fprintf(input, "%d\n", LP.penyanyi_length);
         

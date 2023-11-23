@@ -39,6 +39,18 @@ void STARTINPUT(){
     }
 }
 
+void STARTCOMMAND(){
+    currentWord = ToKata("");
+    START(stdin);
+    IgnoreSeparators();
+    if (currentChar == COLON || currentChar == MARK){
+        endWord = true;
+    } else{
+        endWord = false;
+        CopyWordNoSpace();
+    }
+}
+
 void ADVWORD(){
     IgnoreSeparators();
     if (IsEOP()){
@@ -80,13 +92,13 @@ void ADVWORDNOSPACE(){
 }
 
 void ADVINPUT(){
+    currentWord = ToKata("");
     IgnoreSeparators();
-    if (currentChar == MARK){
+    if (IsEOP() || currentChar == COLON){
         endWord = true;
-    }
-    else{
+    } else{
         endWord = false;
-        CopyWord();
+        CopyWordNoSpace();
         IgnoreSeparators();
     }
 }
@@ -200,6 +212,15 @@ char* WordToStr(Word kata){
 }
 
 void ConcatWord(Word *kata1, Word kata2){
+    (*kata1).TabWord[(*kata1).Length] = ' ';
+    (*kata1).Length++;
+    for (int i = 0; i < kata2.Length; i++){
+        (*kata1).TabWord[(*kata1).Length + i] = kata2.TabWord[i];
+    }
+    (*kata1).Length += kata2.Length;
+}
+
+void ConcatWordNoSpace(Word *kata1, Word kata2){
     for (int i = 0; i < kata2.Length; i++){
         (*kata1).TabWord[(*kata1).Length + i] = kata2.TabWord[i];
     }
@@ -263,127 +284,4 @@ boolean CheckValidInput(Word kata){
         } 
     }
     return false;
-}
-
-void SplitCommandThreeInt(Word* kata, int* id1, int* id2, int* id3){
-    int i = 0;
-    while ((i < (*kata).Length) && ((*kata).TabWord[i] != ' ')){
-        i++;
-    }
-    int x1 = i;
-
-    Word temp1;
-    int j = i + 1;
-    i = 0;
-    while ((j < (*kata).Length) && ((*kata).TabWord[j] != ' ')){
-        temp1.TabWord[i] = (*kata).TabWord[j];
-        i++;
-        j++;
-    }
-    int x2 = i;
-
-    Word temp2;
-    int k = j + 1;
-    j = 0;
-    while ((k < (*kata).Length) && ((*kata).TabWord[k] != ' ')){
-        temp2.TabWord[j] = (*kata).TabWord[k];
-        j++;
-        k++;
-    }   
-    int x3 = j;
-
-    Word temp3;
-    int l = k + 1;
-    k = 0;
-    while ((l < (*kata).Length) && ((*kata).TabWord[l] != ' ')){
-        temp3.TabWord[k] = (*kata).TabWord[l];
-        k++;
-        l++;
-    }    
-
-    (*kata).Length = x1;
-    temp1.Length = x2;
-    temp2.Length = x3;
-    temp3.Length = k;
-
-    *id1 = WordToInt(temp1);
-    *id2 = WordToInt(temp2);
-    *id3 = WordToInt(temp3);
-}
-
-
-void SplitCommandTwoInt(Word* kata, int* id1, int* id2){
-    int i = 0;
-    while ((i < (*kata).Length) && ((*kata).TabWord[i] != ' ')){
-        i++;
-    }
-    int x1 = i;
-
-    Word temp1;
-    int j = i + 1;
-    i = 0;
-    while ((j < (*kata).Length) && ((*kata).TabWord[j] != ' ')){
-        temp1.TabWord[i] = (*kata).TabWord[j];
-        i++;
-        j++;
-    }
-    int x2 = i;
-
-    Word temp2;
-    int k = j + 1;
-    j = 0;
-    while ((k < (*kata).Length) && ((*kata).TabWord[k] != ' ')){
-        temp2.TabWord[j] = (*kata).TabWord[k];
-        j++;
-        k++;
-    }   
-
-    (*kata).Length = x1;
-    temp1.Length = x2;
-    temp2.Length = j;
-
-    *id1 = WordToInt(temp1);
-    *id2 = WordToInt(temp2);
-}
-
-
-void SplitCommandOneInt(Word* kata, int* id1){
-    int i = 0;
-    while ((i < (*kata).Length) && ((*kata).TabWord[i] != ' ')){
-        i++;
-    }
-    int x1 = i;
-
-    Word temp1;
-    int j = i + 1;
-    i = 0;
-    while ((j < (*kata).Length) && ((*kata).TabWord[j] != ' ')){
-        temp1.TabWord[i] = (*kata).TabWord[j];
-        i++;
-        j++;
-    } 
-
-    (*kata).Length = x1;
-    temp1.Length = i;
-
-    *id1 = WordToInt(temp1);
-}
-
-void SplitCommandWords(Word* kata1, Word* kata2){
-    int i = 0;
-    while ((i < (*kata1).Length) && ((*kata1).TabWord[i] != ' ')){
-        i++;
-    }
-    int x1 = i;
-
-    int j = i + 1;
-    i = 0;
-    while ((j < (*kata1).Length) && ((*kata1).TabWord[j] != ' ')){
-        (*kata2).TabWord[i] = (*kata1).TabWord[j];
-        i++;
-        j++;
-    } 
-
-    (*kata1).Length = x1;
-    (*kata2).Length = i;
 }

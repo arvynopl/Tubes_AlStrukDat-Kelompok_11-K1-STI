@@ -112,27 +112,17 @@ void QUEUEPLAYLIST(){
 
 }
 
-void QUEUESWAP(){
+void QUEUESWAP(int x, int y){
     if (IsON){
-        int rep;
-        printf("Masukkan ID lagu pertama yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int x = rep;
         x--;
-        printf("\nMasukkan ID lagu kedua yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int y = rep;
         y--;
-        printf("\n");
 
         int n = LengthOfQueue(Queue);
         if (x < 0 || x >= n || y < 0 || y >= n){
             if (x < 0 || x >= n){
-                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", x);
+                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.\n", x);
             } else if (y < 0 || y >= n){
-                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", y);
+                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.\n", y);
             }
         } else{
             x += Queue.idxHead;
@@ -164,15 +154,9 @@ void QUEUESWAP(){
 
 }
 
-void QUEUEREMOVE(){
+void QUEUEREMOVE(int id){
     if (IsON){
-        int rep;
-        printf("Masukkan ID lagu yang ingin dihapus: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int id = rep;
         id--;
-        printf("\n");
 
         if (!IsEmptyQueue(Queue)){
             if (id < 0 || id >= LengthOfQueue(Queue)){
