@@ -43,7 +43,7 @@ void PLAYSONG(){
                 idlagu--;
 
                 if (idlagu < 0 || idlagu >= LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length){
-                    printf("Tidak ada lagu dengan playlist ID %d. Silakan coba lagi.\n", idlagu + 1);
+                    printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", idlagu + 1);
                     
                 } else{
                     currSong = LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idlagu];
