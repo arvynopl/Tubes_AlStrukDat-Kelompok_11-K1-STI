@@ -14,12 +14,17 @@ void IgnoreSeparators();
     F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
 void STARTWORD(FILE *input);
-/* I.S. : currentChar sembarang
+/*  I.S. : currentChar sembarang
     F.S. : EndWord = true, dan currentChar = MARK;
         atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
         currentChar karakter pertama sesudah karakter terakhir kata */
 
 void STARTINPUT();
+/*  I.S. : currentChar sembarang
+    F.S. : menerima input melalui terminal
+        currentChar merupakan mark maka sudah akhir dari suatu kata,
+        jika currentChar bukan merupakan mark maka kata di copy */
+
 void STARTCOMMAND();
 /*  I.S. : currentChar sembarang
     F.S. : EndWord = true, dan currentChar = MARK;
@@ -27,7 +32,17 @@ void STARTCOMMAND();
         currentChar karakter pertama sesudah karakter terakhir kata */
 
 void ADVWORD();
+/* Pita dimajukan satu kata.
+   I.S. : kata pada jendela = currentWord, currentWord != MARK
+   F.S. : jika sudah akhir huruf dari suatu kata ditandai dengan EOF maka di copy dengan diawali ADV
+        jika bukan maka hanya perlu mengcopy saja*/
+
 void ADVWORDNOSPACE();
+/* Pita dimajukan satu kata tanpa space.
+   I.S. : kata pada jendela = currentWord, currentWord != MARK
+   F.S. : jika sudah akhir huruf dari suatu kata ditandai dengan EOF maka di copy dengan diawali ADV
+        jika bukan maka hanya perlu mengcopy saja*/
+
 void ADVINPUT();
 /*  I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
     F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
@@ -36,6 +51,9 @@ void ADVINPUT();
     Proses : Akuisisi kata menggunakan procedure SalinWord */
 
 void CopyWord();
+/*  I.S. : kata sembarang
+    F.S. : menyalin kata dan kata sudah disalin*/
+
 void CopyWordNoSpace();
 /* Mengakuisisi kata, menyimpan dalam currentWord
    I.S. : currentChar adalah karakter pertama dari kata
@@ -72,8 +90,8 @@ int WordToInt(Word currrentWord);
 /*  Fungsi yang menerima parameter berupa string dan mengembalikannya dalam bentuk integer */
 
 Word UnionWord(char* str, Word b);
-// /* Fungsi yang menerima dua parameter berupa string dan Word
-//    Kemudian mengembalikan sebuah Word yang merupakan hasil penggabungan string dan Word */
+/*  Fungsi yang menerima dua parameter berupa string dan Word
+    Kemudian mengembalikan sebuah Word yang merupakan hasil penggabungan string dan Word */
 
 char* WordToStr(Word kata);
 /*  Fungsi yang menerima parameter berupa Word kemudian mengubah 
@@ -83,17 +101,22 @@ Word IntToWord(int n);
 /*  Mengubah integer menjadi tipe data Word */
 
 void ConcatWord(Word *kata1, Word kata2);
-void ConcatWordNoSpace(Word *kata1, Word kata2);
 /* Menyambungkan kata kedua ke dalam kata pertama
    I.S. sembarang
    F.S. kata2 disambung ke kata pertama */
 
+void ConcatWordNoSpace(Word *kata1, Word kata2);
+/* Menyambungkan kata kedua ke dalam kata pertama tanpa space
+   I.S. sembarang
+   F.S. kata2 disambung ke kata pertama */
+
 Word ToLower(Word kata);
-// /* Mengubah kata yang merupakan huruf kapital menjadi huruf kecil */
+/* Mengubah kata yang merupakan huruf kapital menjadi huruf kecil */
 
 Word ToUpper(Word kata);
-// /* Mengubah kata yang merupakan huruf kecil menjadi huruf kapital */
+/* Mengubah kata yang merupakan huruf kecil menjadi huruf kapital */
 
 boolean CheckValidInput(Word kata);
+/*  Mengecek ada atau tidaknya sebuah kata dengan space atau dalam kata lain kalimat */
 
 #endif

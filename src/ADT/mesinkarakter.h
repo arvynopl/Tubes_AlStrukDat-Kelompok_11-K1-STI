@@ -37,5 +37,6 @@ boolean IsEOP();
 /* Mengirimkan true jika currentChar = MARK */
 
 boolean IsEOF();
+/* Mengirimkan true jika retval = EOF */
 
 #endif
