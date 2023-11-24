@@ -352,3 +352,162 @@ void PLAYLISTDELETE(){
 
     CONSOLE();
 }
+
+void PLAYLISTENHANCE() {
+    if (IsON){
+        printf("Masukkan ID Playlist yang dipilih: ");
+        STARTINPUT();
+        int idplaylist = WordToInt(GetWord());
+        idplaylist--;
+        printf("\n");
+
+        if (idplaylist >= 0 && idplaylist < (ListPL).playlist_length) {
+            
+            Lagu hasilRekomendasi[5];
+
+            printf("Daftar lagu rekomendasi WayangWave : \n");
+            for (int i = 0; i < 5; i++) {
+                int penyanyi_index = (int) RAND() % (LP.penyanyi_length - 1);
+                int album_index = (int) RAND() % (LP.penyanyi[penyanyi_index].album_length - 1);
+                int lagu_index = (int) RAND() % (LP.penyanyi[penyanyi_index].album_penyanyi[album_index].lagu_length - 1);
+                
+                hasilRekomendasi[i] = LP.penyanyi[penyanyi_index].album_penyanyi[album_index].lagu_album[lagu_index];
+
+                printf("%d. ", i + 1);
+                PrintWord(LP.penyanyi[penyanyi_index].penyanyi_nama);
+                printf(" - ");
+                PrintWord(LP.penyanyi[penyanyi_index].album_penyanyi[album_index].album_nama);
+                printf(" - ");
+                PrintWord(LP.penyanyi[penyanyi_index].album_penyanyi[album_index].lagu_album[lagu_index].lagu_nama);
+                prinf("\n");
+            }
+
+            Word ans;
+            printf ("Apakah ada lagu yang ingin tambahkan ke dalam playlist?(Y/N): ");
+            STARTINPUT();
+            ans = ToUpper(GetWord());
+            printf("\n");
+
+            if ((ans.TabWord[0] == 'Y') && (ans.Length == 1)){
+                int id1 = INT_UNDEF, id2 = INT_UNDEF, id3 = INT_UNDEF, id4 = INT_UNDEF, id5 = INT_UNDEF;
+                printf("Lagu apa yang ingin Anda tambahkan ke dalam playlist? Pilih ID lagu yang diinginkan (contoh: 1 2 3): ");
+                STARTCOMMAND();
+                id1 = WordToInt(GetWord());
+                id1--;
+                if (id1 != INT_UNDEF){
+                    ADVINPUT();
+                    id2 = WordToInt(GetWord());
+                    id2--;
+                    if (id2 != INT_UNDEF){
+                        ADVINPUT();
+                        id3 = WordToInt(GetWord());
+                        id3--;
+                        if (id3 != INT_UNDEF){
+                            ADVINPUT();
+                            id4 = WordToInt(GetWord());
+                            id4--;
+                            if (id4 != INT_UNDEF){
+                                ADVINPUT();
+                                id5 = WordToInt(GetWord());
+                                id5--;
+                            }
+                        }
+                    }
+                } else{
+                    printf("Anda tidak memasukkan ID lagu yang diinginkan. Silakan coba lagi.\n");
+                    CONSOLE();
+                }
+                printf("\n");
+
+                int n = LengthOfPlaylist(ListPL.playlist[idplaylist]);
+                if (id1 >= 0 || id1 < n){
+                    if (CheckLaguPlaylist(ListPL.playlist[idplaylist], hasilRekomendasi[id1])) {
+                        printf("Lagu sudah ada di dalam playlist. Silakan masukkan lagu yang belum ada di dalam playlist.\n");
+                    } else {
+                        InsertLastPlaylist(&(ListPL.playlist[idplaylist]), hasilRekomendasi[id1]);
+                    }
+                } else{
+                    printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", id1 + 1);
+                }
+                if (id2 != INT_UNDEF){
+                    if (id2 >= 0 || id2 < n){
+                        if (CheckLaguPlaylist(ListPL.playlist[idplaylist], hasilRekomendasi[id2])) {
+                            printf("Lagu sudah ada di dalam playlist. Silakan masukkan lagu yang belum ada di dalam playlist.\n");
+                        } else {
+                            InsertLastPlaylist(&(ListPL.playlist[idplaylist]), hasilRekomendasi[id2]);
+                        }
+                    } else{
+                        printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", id2 + 1);
+                    }                  
+                }
+                if (id3 != INT_UNDEF){
+                    if (id3 >= 0 || id3 < n){
+                        if (CheckLaguPlaylist(ListPL.playlist[idplaylist], hasilRekomendasi[id3])) {
+                            printf("Lagu sudah ada di dalam playlist. Silakan masukkan lagu yang belum ada di dalam playlist.\n");
+                        } else {
+                            InsertLastPlaylist(&(ListPL.playlist[idplaylist]), hasilRekomendasi[id3]);
+                        }
+                    } else{
+                        printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", id3 + 1);
+                    }                  
+                }
+                if (id4 != INT_UNDEF){
+                    if (id4 >= 0 || id4 < n){
+                        if (CheckLaguPlaylist(ListPL.playlist[idplaylist], hasilRekomendasi[id4])) {
+                            printf("Lagu sudah ada di dalam playlist. Silakan masukkan lagu yang belum ada di dalam playlist.\n");
+                        } else {
+                            InsertLastPlaylist(&(ListPL.playlist[idplaylist]), hasilRekomendasi[id4]);
+                        }
+                    } else{
+                        printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", id4 + 1);
+                    }                  
+                }
+                if (id5 != INT_UNDEF){
+                    if (id5 >= 0 || id5 < n){
+                        if (CheckLaguPlaylist(ListPL.playlist[idplaylist], hasilRekomendasi[id5])) {
+                            printf("Lagu sudah ada di dalam playlist. Silakan masukkan lagu yang belum ada di dalam playlist.\n");
+                        } else {
+                            InsertLastPlaylist(&(ListPL.playlist[idplaylist]), hasilRekomendasi[id5]);
+                        }
+                    } else{
+                        printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", id5 + 1);
+                    }                  
+                }
+
+                if (id1 != INT_UNDEF && id2 == INT_UNDEF){
+                    printf("Lagu rekomendasi berhasil ditambahkan ke dalam playlist.\n");
+                } else if (id1 != INT_UNDEF && (id2 != INT_UNDEF || id3 != INT_UNDEF || id4 != INT_UNDEF || id5 != INT_UNDEF)){
+                    printf("Lagu-lagu rekomendasi berhasil ditambahkan ke dalam playlist.\n");
+                }
+                
+            } else if ((ans.TabWord[0] == 'N') && (ans.Length == 1)){
+                printf("Baiklah, kami mengerti bahwa Anda memilih untuk tidak menambahkan lagu ke dalam playlist.\n");
+                printf("Apakah Anda ingin mencoba untuk mencari lagu-lagu rekomendasi lain?(Y/N): ");
+                STARTINPUT();
+                ans = ToUpper(GetWord());
+                printf("\n");
+
+                if ((ans.TabWord[0] == 'Y') && (ans.Length == 1)){
+                    PLAYLISTENHANCE();
+                } else if ((ans.TabWord[0] == 'N') && (ans.Length == 1)){
+                    CONSOLE();
+                } else{
+                    printf("\nInput selain Y/N adalah invalid. Silakan coba lagi.\n");
+                    CONSOLE();
+                }
+                
+            } else{
+                printf("\nInput selain Y/N adalah invalid. Silakan coba lagi.\n");
+            }
+
+        } else{
+            printf("\nTidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", idplaylist + 1);
+        }
+
+    } else{
+        printf("Anda belum masuk ke dalam program...\n");
+    }
+
+    CONSOLE();
+
+}
