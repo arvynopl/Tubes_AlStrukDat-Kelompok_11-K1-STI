@@ -14,7 +14,7 @@ void LISTDEFAULT(){
         printf("Ingin melihat album yang ada?(Y/N): ");
         STARTINPUT();
         ans1 = ToUpper(GetWord());
-        if ((ans1.TabWord[0] == 'Y') && (ans1.Length = 1)){
+        if ((ans1.TabWord[0] == 'Y') && (ans1.Length == 1)){
             printf("Pilih penyanyi untuk melihat album mereka: ");
             STARTINPUT();
             ans1 = GetWord();
@@ -62,7 +62,7 @@ void LISTDEFAULT(){
                 printf("\nPenyanyi tidak ada dalam daftar. Silakan coba lagi.\n");
             }
 
-        } else if ((ans1.TabWord[0] == 'N') && (ans1.Length = 1)){
+        } else if ((ans1.TabWord[0] == 'N') && (ans1.Length == 1)){
 
         } else{
             printf("\nInput selain Y/N adalah invalid. Silakan coba lagi.\n");

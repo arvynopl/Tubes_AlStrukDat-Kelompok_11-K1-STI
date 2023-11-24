@@ -3,6 +3,7 @@
 #include "boolean.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 #define Nil 0
 #define MaxEl 100
