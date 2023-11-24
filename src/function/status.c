@@ -8,7 +8,7 @@ void STATUS(){
             printf("\n");
         }
 
-        printf("Now Playing:\n");
+        printf("\nNow Playing:\n");
         if(currSong.lagu_nama.Length == 0){
             printf("No songs have been played yet. Please search for a song to begin playback.\n");
         }

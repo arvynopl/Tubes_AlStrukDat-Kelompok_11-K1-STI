@@ -118,19 +118,11 @@ void QUEUESWAP(int x, int y){
         y--;
 
         int n = LengthOfQueue(Queue);
-<<<<<<< HEAD
         if (x < 0 || x >= n){
             if (y < 0 || y >= n){
                 printf("Lagu dengan urutan ke-%d dan %d tidak terdapat dalam queue. Silakan coba lagi.", (x+1), (y+1));
             } else{
                 printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", (x+1));
-=======
-        if (x < 0 || x >= n || y < 0 || y >= n){
-            if (x < 0 || x >= n){
-                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.\n", x);
-            } else if (y < 0 || y >= n){
-                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.\n", y);
->>>>>>> 837b9af2fd218ea2ae419873e52216f228eb8446
             }
         } else if (y < 0 || y >= n){
             printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", (y+1));
