@@ -1,17 +1,10 @@
-/* MODUL LIST INTEGER */
+/* File: list.h */
 /* Berisi definisi dan semua primitif pemrosesan list integer */
 /* Penempatan elemen selalu rapat kiri */
 #ifndef LIST_H
 #define LIST_H
 #include "../structure.h"
 #include "mesinkata.h"
-
-/* Indeks yang digunakan seberapa banyak memori itu terisi */
-/* Jika L adalah List, cara deklarasi dan akses: */
-/* Deklarasi: L : List */
-/* Maka cara akses:
- * L.A untuk mengakses seluruh nilai elemen list
- * L.A[i] untuk mengakses elemen ke-i */
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor: create list kosong */
@@ -45,15 +38,6 @@ void SetPenyanyi(ListPenyanyi *LP, int i, Penyanyi P);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
 int LengthOfPenyanyi(ListPenyanyi LP);
-
-/* *** Selektor INDEKS *** */
-/* Prekondisi : list L tidak kosong */
-/* Mengirimkan indeks elemen pertama */
-int FirstIdxOfListPenyanyi(ListPenyanyi LP);
-
-/* Prekondisi : list L tidak kosong */
-/* Mengirimkan indeks elemen terakhir */
-int LastIdxOfListPenyanyi(ListPenyanyi LP);
 
 /* ********** Test Indeks yang valid ********** */
 /* Prekondisi : i sembarang */

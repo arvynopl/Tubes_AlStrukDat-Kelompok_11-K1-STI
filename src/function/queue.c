@@ -43,7 +43,7 @@ void QUEUESONG(){
                 idlagu--;
                 printf("\n");
 
-                if (idlagu < 0 || idlagu > LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length){
+                if (idlagu >= 0 && idlagu < LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length){
                     Enqueue(&Queue, LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idlagu]);
                     printf("Berhasil menambahkan lagu \"");
                     PrintWord(LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idlagu].lagu_nama);
@@ -119,14 +119,10 @@ void QUEUESWAP(int x, int y){
 
         int n = LengthOfQueue(Queue);
         if (x < 0 || x >= n || y < 0 || y >= n){
-            if ((x < 0 || x >= n) && (y < 0 || y >= n)){
-                if (y < 0 || y >= n){
-                    printf("Lagu dengan urutan ke-%d dan %d tidak terdapat dalam queue. Silakan coba lagi.", (x+1), (y+1));
-                } else {
-                    printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", (x+1));
-                }
+            if (x < 0 || x >= n){
+                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.\n", x);
             } else if (y < 0 || y >= n){
-                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.", (y+1));
+                printf("Lagu dengan urutan ke-%d tidak terdapat dalam queue. Silakan coba lagi.\n", y);
             }
         } else{
             x += Queue.idxHead;

@@ -2,5 +2,6 @@
 structure.h
 boolean.h
 main.exe
-pitakar.txt
+*.txt
 Makefile
+list.c

@@ -71,7 +71,7 @@ void ResizeSmallerListPlaylist(ListPlaylist* X){
     }
 }
 
-void FreePlaylist(ListPlaylist* X){
+void FreeListPlaylist(ListPlaylist* X){
     for (int i = 0; i < (*X).playlist_length; i++){
         while (!IsEmptyPlaylist((*X).playlist[i])){
             Lagu val;
@@ -81,6 +81,19 @@ void FreePlaylist(ListPlaylist* X){
     (*X).playlist_length = 0;
     (*X).playlist_size = MaxEl/20;
     free((*X).playlist);
+}
+
+void FreePlaylist(ListPlaylist *P, NamaPlaylist* X){
+    int x = LengthOfPlaylist(*X);
+    for (int i = 0; i < x; i++){
+        Lagu val;
+        DeleteLastPlaylist(X, &val);
+    }
+    (*X).list = Nil;
+    (*X).playlist_nama.Length = 0;
+    (*X).playlist_nama.TabWord[0] = STR_UNDEF;
+    (*P).playlist_length--;
+    free(X);
 }
 
 void PrintListPlaylist(ListPlaylist X){

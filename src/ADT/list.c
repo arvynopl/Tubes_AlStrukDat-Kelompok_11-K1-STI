@@ -13,15 +13,15 @@ boolean IsFullListPenyanyi(ListPenyanyi LP){
 }
 
 int LengthOfPenyanyi(ListPenyanyi LP){
-    return 0;
+    return (LP.penyanyi_length);
 }
 
 boolean IsIdxValidOfListPenyanyi(int i){
-    return (i >= 0) && (i < MaxEl);
+    return ((i >= 0) && (i < MaxEl));
 }
 
 boolean IsIdxEffOfListPenyanyi(ListPenyanyi LP, int i){
-    return (i >= 0) && (i < LP.penyanyi_length);
+    return ((i >= 0) && (i < LP.penyanyi_length));
 }
 
 Penyanyi GetPenyanyi(ListPenyanyi LP, int i){
