@@ -61,6 +61,9 @@ void CONSOLE(){
     Word playlistDelete;
     playlistDelete = ToKata("PLAYLIST DELETE");
 
+    Word playlistEnhance;
+    playlistEnhance = ToKata("PLAYLIST ENHANCE");
+
     Word status;
     status = ToKata("STATUS");
 
@@ -120,7 +123,7 @@ void CONSOLE(){
         }
     }
 
-    while (INVALIDCOMMAND(ans1, displayAll, start, load, help, listDefault, listPlaylist, playSong, playPlaylist, queueSong, queuePlaylist, queueSwap, queueRemove, queueClear, songNext, songPrevious, playlistCreate, playlistAddSong, playlistAddAlbum, playlistSwap, playlistRemove, playlistDelete, status, save, quit)){
+    while (INVALIDCOMMAND(ans1, displayAll, start, load, help, listDefault, listPlaylist, playSong, playPlaylist, queueSong, queuePlaylist, queueSwap, queueRemove, queueClear, songNext, songPrevious, playlistCreate, playlistAddSong, playlistAddAlbum, playlistSwap, playlistRemove, playlistDelete, playlistEnhance, status, save, quit)){
         printf("Silakan masukkan command kembali.\n");
         printf("Jika mengalami kesulitan, silakan ketik HELP untuk mendapatkan panduan.\n");
         printf("\nKetik command disini: ");
@@ -183,7 +186,7 @@ void CONSOLE(){
         if (input != Nil){
             LOADPROG(input);
         } else{
-            printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+            printf("\nSave file tidak ditemukan. WayangWave gagal dijalankan.\n");
         }
 
         CONSOLE();
@@ -241,6 +244,9 @@ void CONSOLE(){
     }
     else if(WordCompare(ans1,playlistDelete)){
         PLAYLISTDELETE();
+    }
+    else if(WordCompare(ans1,playlistEnhance)){
+        PLAYLISTENHANCE();
     }
     else if(WordCompare(ans1,status)){
         STATUS();
