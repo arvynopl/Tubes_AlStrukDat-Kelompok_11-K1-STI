@@ -1,163 +1,191 @@
-#include <stdio.h>
 #include "list.h"
 
-// Konstruktor
-
-List MakeList()
+void CreateListPenyanyi(ListPenyanyi *LP)
 {
-    List L;
-    IdxType i;
-    for (i = 0; i < MaxEl; i++)
+    (*LP).penyanyi_length = Nil;
+}
+
+boolean IsEmptyListPenyanyi(ListPenyanyi LP)
+{
+    return (LP.penyanyi_length == Nil);
+}
+
+boolean IsFullListPenyanyi(ListPenyanyi LP)
+{
+    return (LP.penyanyi_length == MaxEl / 20);
+}
+
+int LengthOfPenyanyi(ListPenyanyi LP)
+{
+    return (LP.penyanyi_length);
+}
+
+boolean IsIdxValidOfListPenyanyi(int i)
+{
+    return ((i >= 0) && (i < MaxEl));
+}
+
+boolean IsIdxEffOfListPenyanyi(ListPenyanyi LP, int i)
+{
+    return ((i >= 0) && (i < LP.penyanyi_length));
+}
+
+Penyanyi GetPenyanyi(ListPenyanyi LP, int i)
+{
+    return LP.penyanyi[i];
+}
+
+void SetPenyanyi(ListPenyanyi *LP, int i, Penyanyi P)
+{
+    if (i < LengthOfPenyanyi(*LP))
     {
-        L.A[i] = Mark;
+        (*LP).penyanyi[i] = P;
     }
-    return L;
 }
 
-boolean IsEmpty(List L)
+boolean SearchPenyanyi(ListPenyanyi LP, Penyanyi P)
 {
-    return (L.A[0] == Mark);
-}
-
-int Length(List L)
-{
-    int i = 0;
-    while (L.A[i] != Mark)
-    {
-        i += 1;
-    }
-    return i;
-}
-
-ElType Get(List L, IdxType i)
-{
-    return L.A[i];
-}
-
-void Set(List *L, IdxType i, ElType v)
-{
-    (*L).A[i] = v;
-}
-
-IdxType FirstIdx(List L)
-{
-    return 0;
-}
-
-IdxType LastIdx(List L)
-{
-    int i = FirstIdx(L);
-    while ((i < MaxEl) && (L.A[i + 1] != Mark))
-    {
-        i += 1;
-    }
-    return i;
-}
-
-boolean IsIdxValid(List L, IdxType i)
-{
-    return (0 <= i) && (MaxEl >= i);
-}
-
-boolean IsIdxEff(List L, IdxType i)
-{
-    return (FirstIdx(L) <= i) && (LastIdx(L) >= i);
-}
-
-boolean Search(List L, ElType X)
-{
-    int i = FirstIdx(L);
-    int j = LastIdx(L);
     boolean found = false;
-    while ((i <= j) && !found)
+    int n = LengthOfPenyanyi(LP);
+    int i = 0;
+    while (!found && i < n)
     {
-        if (L.A[i] == X)
+        if (WordCompare(LP.penyanyi[i].penyanyi_nama, P.penyanyi_nama))
         {
             found = true;
         }
-        i += 1;
+        i++;
     }
     return found;
 }
 
-void InsertFirst(List *L, ElType X)
+void InsertFirstListPenyanyi(ListPenyanyi *LP, Penyanyi P)
 {
-    IdxType i = LastIdx(*L);
-    while (i >= 0)
+    if (!IsFullListPenyanyi(*LP))
     {
-        Set(L, i + 1, Get(*L, i));
-        i--;
-    }
-    Set(L, 0, X);
-}
-
-void InsertAt(List *L, ElType X, IdxType i)
-{
-    IdxType j = LastIdx(*L);
-    while (i <= j)
-    {
-        Set(L, j + 1, Get(*L, j));
-        j--;
-    }
-    Set(L, i, X);
-}
-
-void InsertLast(List *L, ElType X)
-{
-    if (IsEmpty(*L))
-    {
-        InsertFirst(L, X);
+        int i = (*LP).penyanyi_length - 1;
+        while (i >= 0 && i < MaxEl)
+        {
+            SetPenyanyi(LP, i + 1, GetPenyanyi(*LP, i));
+            i--;
+        }
+        SetPenyanyi(LP, 0, P);
+        (*LP).penyanyi_length++;
     }
     else
     {
-        (*L).A[LastIdx(*L) + 1] = X;
+        printf("List Penyanyi sudah penuh...\n");
     }
 }
 
-void DeleteFirst(List *L)
+void InsertAtListPenyanyi(ListPenyanyi *LP, Penyanyi P, int i)
 {
-    int i = FirstIdx(*L);
-    while (i < LastIdx(*L))
+    if (!IsFullListPenyanyi(*LP))
     {
-        (*L).A[i] = (*L).A[i + 1];
-        i++;
+        int j = (*LP).penyanyi_length - 1;
+        while (i <= j)
+        {
+            SetPenyanyi(LP, j + 1, GetPenyanyi(*LP, j));
+            j--;
+        }
+        SetPenyanyi(LP, i, P);
+        (*LP).penyanyi_length++;
     }
-    (*L).A[i] = Mark;
+    else
+    {
+        printf("List Penyanyi sudah penuh...\n");
+    }
 }
 
-void DeleteAt(List *L, IdxType i)
+void InsertLastListPenyanyi(ListPenyanyi *LP, Penyanyi P)
 {
-    int j = LastIdx(*L);
+    if (!IsFullListPenyanyi(*LP))
+    {
+        if (IsEmptyListPenyanyi(*LP))
+        {
+            InsertFirstListPenyanyi(LP, P);
+        }
+        else
+        {
+            (*LP).penyanyi[(*LP).penyanyi_length] = P;
+            (*LP).penyanyi_length++;
+        }
+    }
+    else
+    {
+        printf("List Penyanyi sudah penuh...\n");
+    }
+}
+
+void DeleteFirstListPenyanyi(ListPenyanyi *LP)
+{
+    if (!IsEmptyListPenyanyi(*LP))
+    {
+        int i = 0;
+        int j = (*LP).penyanyi_length - 2;
+        while (i < j)
+        {
+            (*LP).penyanyi[i] = (*LP).penyanyi[i + 1];
+            i++;
+        }
+        (*LP).penyanyi_length--;
+    }
+    else
+    {
+        printf("List Penyanyi kosong. Silahkan tambah penyanyi...\n");
+    }
+}
+
+void DeleteAtListPenyanyi(ListPenyanyi *LP, int i)
+{
+    if (!IsEmptyListPenyanyi(*LP))
+    {
+        int j = (*LP).penyanyi_length - 1;
+        while (i <= j)
+        {
+            (*LP).penyanyi[i] = (*LP).penyanyi[i + 1];
+            i++;
+        }
+        (*LP).penyanyi_length--;
+    }
+    else
+    {
+        printf("List Penyanyi kosong. Silahkan tambah penyanyi...\n");
+    }
+}
+
+void DeleteLastListPenyanyi(ListPenyanyi *LP)
+{
+    if (!IsEmptyListPenyanyi(*LP))
+    {
+        (*LP).penyanyi_length--;
+    }
+    else
+    {
+        printf("List Penyanyi kosong. Silahkan tambah penyanyi...\n");
+    }
+}
+
+ListPenyanyi ConcatListPenyanyi(ListPenyanyi L1, ListPenyanyi L2)
+{
+    ListPenyanyi L3;
+    CreateListPenyanyi(&L3);
+    int i = 0;
+    int j = (L1).penyanyi_length - 1;
+    int idx = 0;
     while (i <= j)
     {
-        (*L).A[i] = (*L).A[i + 1];
-        i++;
-    }
-}
-
-void DeleteLast(List *L)
-{
-    (*L).A[LastIdx(*L)] = Mark;
-}
-
-List Concat(List L1, List L2)
-{
-    List L3 = MakeList();
-    int i = FirstIdx(L1);
-    int j = FirstIdx(L2);
-    int idx = 0;
-    while (i <= LastIdx(L1))
-    {
-        L3.A[idx] = L1.A[i];
+        L3.penyanyi[idx] = L1.penyanyi[i];
         idx++;
         i++;
     }
-    while (j <= LastIdx(L2))
+    i = 0;
+    j = (L2).penyanyi_length - 1;
+    while (i <= j)
     {
-        L3.A[idx] = L2.A[j];
+        L3.penyanyi[idx] = L2.penyanyi[i];
         idx++;
-        j++;
+        i++;
     }
-
     return L3;
 }

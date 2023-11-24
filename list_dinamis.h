@@ -1,33 +1,27 @@
-#ifndef ADTListDinamis
-#define ADTListDinamis
+#ifndef LISTDINAMIS_H
+#define LISTDINAMIS_H
+#include "../structure.h"
+#include "mesinkata.h"
+#include "linkedlist.h"
 
-// Kamus Umum
-#define Mark -9999
-#define constant \
-    INITIAL_CAP: \
-    integer = 100
+void CreateListPlaylist(ListPlaylist *X);
 
-#define Eltype int
-#define IdxType int
-#define size_t int
+void PushPlaylist(ListPlaylist *X, NamaPlaylist val);
 
-typedef struct
-{
-    int *data;
-    size_t size;
-    size_t capacity;
-} DynamicList;
+void PopPlaylist(ListPlaylist *X, NamaPlaylist *val);
 
-DynamicList *createDynamicList(size_t initialCapacity);
+NamaPlaylist GetPlaylist(ListPlaylist X, size_t i);
 
-void pushDynamicList(DynamicList *arr, int value);
+void SetPlaylist(ListPlaylist *X, size_t i, NamaPlaylist val);
 
-int getDynamicList(DynamicList *arr, size_t index);
+void ResizeBiggerListPlaylist(ListPlaylist *X);
 
-void setDynamicList(DynamicList *arr, size_t index, int value);
+void ResizeSmallerListPlaylist(ListPlaylist *X);
 
-void resizeDynamicList(DynamicList *arr, size_t newCapacity);
+void FreeListPlaylist(ListPlaylist *X);
 
-void freeDynamicList(DynamicList *arr);
+void FreePlaylist(ListPlaylist *P, NamaPlaylist *X);
+
+void PrintListPlaylist(ListPlaylist X);
 
 #endif

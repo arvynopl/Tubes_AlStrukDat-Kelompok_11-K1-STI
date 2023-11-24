@@ -1,59 +1,134 @@
 #include "listdinamis.h"
-#include <stdio.h>
-#include <stdlib.h>
 
-DynamicList *createDynamicList(size_t initialCapacity)
+void CreateListPlaylist(ListPlaylist *X)
 {
-    DynamicList *arr = (DynamicList *)malloc(sizeof(DynamicList));
-    arr->data = (int *)malloc(sizeof(int) * initialCapacity);
-    arr->size = 0;
-    arr->capacity = initialCapacity;
-    return arr;
-}
-
-void pushDynamicList(DynamicList *arr, int value)
-{
-    if (arr->size == arr->capacity)
+    (*X).playlist = (NamaPlaylist *)malloc((MaxEl / 20) * sizeof(NamaPlaylist));
+    if (X != NULL)
     {
-        resizeDynamicList(arr, arr->capacity * 2); // Double the capacity
+        (*X).playlist_size = MaxEl / 20;
+        (*X).playlist_length = 0;
     }
-    arr->data[arr->size++] = value;
 }
 
-int getDynamicList(DynamicList *arr, size_t index)
+void PushPlaylist(ListPlaylist *X, NamaPlaylist val)
 {
-    if (index >= arr->size)
+    if ((*X).playlist_length == (*X).playlist_size)
     {
-        printf("Index out of range.\n");
-        exit(1);
+        ResizeBiggerListPlaylist(X);
     }
-    return arr->data[index];
+    (*X).playlist[(*X).playlist_length] = val;
+    (*X).playlist_length++;
 }
 
-void setDynamicList(DynamicList *arr, size_t index, int value)
+void PopPlaylist(ListPlaylist *X, NamaPlaylist *val)
 {
-    if (index >= arr->size)
+    if ((*X).playlist_length != 0)
     {
-        printf("Index out of range.\n");
-        exit(1);
+        *val = (*X).playlist[(*X).playlist_length - 1];
+        (*X).playlist_length--;
+        if ((*X).playlist_length == (*X).playlist_size / 2)
+        {
+            ResizeSmallerListPlaylist(X);
+        }
     }
-    arr->data[index] = value;
 }
 
-void resizeDynamicList(DynamicList *arr, size_t newCapacity)
+NamaPlaylist GetPlaylist(ListPlaylist X, size_t i)
 {
-    int *newData = (int *)malloc(sizeof(int) * newCapacity);
-    for (size_t i = 0; i < arr->size; i++)
+    if (i >= X.playlist_length)
     {
-        newData[i] = arr->data[i];
+        printf("Indeks yang diakses invalid...\n");
+        NamaPlaylist defplaylist;
+        defplaylist.list = Nil;
+        defplaylist.playlist_nama.TabWord[0] = STR_UNDEF;
+        defplaylist.playlist_nama.Length = 0;
+        return defplaylist;
     }
-    free(arr->data);
-    arr->data = newData;
-    arr->capacity = newCapacity;
+    else
+    {
+        return X.playlist[i];
+    }
 }
 
-void freeDynamicList(DynamicList *arr)
+void SetPlaylist(ListPlaylist *X, size_t i, NamaPlaylist val)
 {
-    free(arr->data);
-    free(arr);
+    if (i >= (*X).playlist_length)
+    {
+        printf("Indeks yang diakses invalid...\n");
+    }
+    else
+    {
+        (*X).playlist[i] = val;
+    }
+}
+
+void ResizeBiggerListPlaylist(ListPlaylist *X)
+{
+    (*X).playlist_size *= 2;
+    size_t newSize = (*X).playlist_size;
+    (*X).playlist = realloc((*X).playlist, newSize * sizeof(NamaPlaylist));
+    if ((*X).playlist != Nil)
+    {
+        printf("Reallocation done correctly...\n");
+    }
+    else
+    {
+        printf("Error in reallocation...\n");
+        free(X);
+    }
+}
+
+void ResizeSmallerListPlaylist(ListPlaylist *X)
+{
+    (*X).playlist_size /= 2;
+    size_t newSize = (*X).playlist_size;
+    (*X).playlist = realloc((*X).playlist, newSize * sizeof(NamaPlaylist));
+    if ((*X).playlist != Nil)
+    {
+        printf("Reallocation done correctly...\n");
+    }
+    else
+    {
+        printf("Error in reallocation...\n");
+        free(X);
+    }
+}
+
+void FreeListPlaylist(ListPlaylist *X)
+{
+    for (int i = 0; i < (*X).playlist_length; i++)
+    {
+        while (!IsEmptyPlaylist((*X).playlist[i]))
+        {
+            Lagu val;
+            DeleteLastPlaylist(&((*X).playlist[i]), &val);
+        }
+    }
+    (*X).playlist_length = 0;
+    (*X).playlist_size = MaxEl / 20;
+    free((*X).playlist);
+}
+
+void FreePlaylist(ListPlaylist *P, NamaPlaylist *X)
+{
+    int x = LengthOfPlaylist(*X);
+    for (int i = 0; i < x; i++)
+    {
+        Lagu val;
+        DeleteLastPlaylist(X, &val);
+    }
+    (*X).list = Nil;
+    (*X).playlist_nama.Length = 0;
+    (*X).playlist_nama.TabWord[0] = STR_UNDEF;
+    (*P).playlist_length--;
+    free(X);
+}
+
+void PrintListPlaylist(ListPlaylist X)
+{
+    for (int i = 0; i < X.playlist_length; i++)
+    {
+        printf("%d. ", i + 1);
+        PrintPlaylist(X.playlist[i]);
+    }
 }
