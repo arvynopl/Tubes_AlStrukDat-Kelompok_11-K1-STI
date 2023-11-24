@@ -6,6 +6,7 @@ void PLAYLISTCREATE(){
         printf("Masukkan nama playlist yang ingin dibuat: ");
         STARTINPUT();
         ans = GetWord();
+        printf("\n");
 
         if (!CheckValidInput(ans)){
             printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
@@ -24,7 +25,6 @@ void PLAYLISTCREATE(){
         printf("Anda belum masuk ke dalam program...\n");
     }
 
-    printf("\n");
     CONSOLE();
 
 }
@@ -80,54 +80,62 @@ void PLAYLISTADDSONG(){
                 idtemp--;
                 printf("\n");
 
-                Lagu addlagu = LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idtemp];
+                if (idtemp < 0 || idtemp >= LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length){
+                    printf("Tidak ada lagu dengan ID %d. Silakan coba lagi.\n", idtemp + 1);
 
-                if (ListPL.playlist_length == 0){
-                    printf("Kamu belum memiliki playlist. Silahkan buat playlist dan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
                 } else{
-                    printf("Daftar playlist pengguna: \n");
-                    for (int i = 0; i < ListPL.playlist_length; i++){
-                        printf("%d. ", i + 1);
-                        PrintWord(ListPL.playlist[i].playlist_nama);
-                        printf("\n");
-                    }
-                    printf("\n");
+                    Lagu addlagu = LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idtemp];
 
-                    printf("Masukkan ID Playlist yang dipilih: ");
-                    STARTINPUT();
-                    idtemp = WordToInt(GetWord());
-                    idtemp--;
-
-                    if (CheckLaguPlaylist(ListPL.playlist[idtemp], addlagu)){
-                        printf("Lagu sudah ada di dalam playlist. Silakan masukkan lagu yang belum ada di dalam playlist.\n");
+                    if (ListPL.playlist_length == 0){
+                        printf("Kamu belum memiliki playlist. Silahkan buat playlist dan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
                     } else{
-                        InsertLastPlaylist(&(ListPL.playlist[idtemp]), addlagu);
-                        
-                        printf("Lagu dengan judul \"");
-                        PrintWord(addlagu.lagu_nama);
-                        printf("\" pada album ");
-                        PrintWord(LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].album_nama);
-                        printf(" oleh penyanyi ");
-                        PrintWord(LP.penyanyi[idpenyanyi].penyanyi_nama);
-                        printf(" berhasil ditambahkan ke dalam playlist ");
-                        PrintWord(ListPL.playlist[idtemp].playlist_nama);
-                        printf(".\n");
-                    }
+                        printf("Daftar playlist pengguna: \n");
+                        for (int i = 0; i < ListPL.playlist_length; i++){
+                            printf("%d. ", i + 1);
+                            PrintWord(ListPL.playlist[i].playlist_nama);
+                            printf("\n");
+                        }
+                        printf("\n");
+
+                        printf("Masukkan ID Playlist yang dipilih: ");
+                        STARTINPUT();
+                        idtemp = WordToInt(GetWord());
+                        idtemp--;
+
+                        if (idtemp < 0 || idtemp >= ListPL.playlist_length){
+                            printf("Tidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", idtemp + 1);
+                        } else{
+                            if (CheckLaguPlaylist(ListPL.playlist[idtemp], addlagu)){
+                                printf("Lagu sudah ada di dalam playlist. Silakan masukkan lagu yang belum ada di dalam playlist.\n");
+                            } else{
+                                InsertLastPlaylist(&(ListPL.playlist[idtemp]), addlagu);
+                                
+                                printf("Lagu dengan judul \"");
+                                PrintWord(addlagu.lagu_nama);
+                                printf("\" pada album ");
+                                PrintWord(LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].album_nama);
+                                printf(" oleh penyanyi ");
+                                PrintWord(LP.penyanyi[idpenyanyi].penyanyi_nama);
+                                printf(" berhasil ditambahkan ke dalam playlist ");
+                                PrintWord(ListPL.playlist[idtemp].playlist_nama);
+                                printf(".\n");
+                            }
+                        }
+                    }                  
                 }
 
             } else{
-                printf("Album tidak ada dalam daftar. Silakan coba lagi.\n");
+                printf("\nAlbum tidak ada dalam daftar. Silakan coba lagi.\n");
             }
 
         } else{
-            printf("Penyanyi tidak ada dalam daftar. Silakan coba lagi.\n");
+            printf("\nPenyanyi tidak ada dalam daftar. Silakan coba lagi.\n");
         }
 
     } else{
         printf("Anda belum masuk ke dalam program...\n");
     }
 
-    printf("\n");
     CONSOLE();
 
 }
@@ -181,56 +189,45 @@ void PLAYLISTADDALBUM(){
                     int idplaylist = WordToInt(GetWord());
                     idplaylist--;
 
-                    for (int i = 0; i < LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length; i++){
-                        Lagu temp = LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[i];
-                        if (!CheckLaguPlaylist(ListPL.playlist[idplaylist], temp)){
-                            InsertLastPlaylist(&(ListPL.playlist[idplaylist]), temp);
+                    if (idplaylist < 0 || idplaylist >= ListPL.playlist_length){
+                        printf("Tidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", idplaylist + 1);
+                    } else{
+                        for (int i = 0; i < LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length; i++){
+                            Lagu temp = LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[i];
+                            if (!CheckLaguPlaylist(ListPL.playlist[idplaylist], temp)){
+                                InsertLastPlaylist(&(ListPL.playlist[idplaylist]), temp);
+                            }
                         }
-                    }
 
-                    printf("Album dengan judul \"");
-                    PrintWord(LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].album_nama);
-                    printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
-                    PrintWord(ListPL.playlist[idplaylist].playlist_nama);
-                    printf("\".\n");
+                        printf("Album dengan judul \"");
+                        PrintWord(LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].album_nama);
+                        printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
+                        PrintWord(ListPL.playlist[idplaylist].playlist_nama);
+                        printf("\".\n");
+                    }
                 } 
 
             } else{
-                printf("Album tidak ada dalam daftar. Silakan coba lagi.\n");
+                printf("\n tidak ada dalam daftar. Silakan coba lagi.\n");
             }
 
         } else{
-            printf("Penyanyi tidak ada dalam daftar. Silakan coba lagi.\n");
+            printf("\nPenyanyi tidak ada dalam daftar. Silakan coba lagi.\n");
         }
 
     } else{
         printf("Anda belum masuk ke dalam program...\n");
     }  
 
-    printf("\n");
     CONSOLE();
 
 }
 
-void PLAYLISTSWAP(){
+void PLAYLISTSWAP(int id, int x, int y){
     if (IsON){
-        int rep;
-        printf("Masukkan ID playlist yang berisikan lagu yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int id = rep;
         id--;
-        printf("\nMasukkan ID lagu pertama yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int x = rep;
         x--;
-        printf("\nMasukkan ID lagu kedua yang ingin ditukar: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int y = rep;
         y--;
-        printf("\n");
 
         if ((id < 0) || (id >= ListPL.playlist_length)){
             printf("Tidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", id + 1);
@@ -276,33 +273,22 @@ void PLAYLISTSWAP(){
         printf("Anda belum masuk ke dalam program...\n");
     }
 
-    printf("\n");
     CONSOLE();
 
 }
 
-void PLAYLISTREMOVE(){
+void PLAYLISTREMOVE(int id, int n){
     if (IsON){
-        int rep;
-        printf("Masukkan ID playlist yang berisikan lagu yang ingin dihapus: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int id = rep;
         id--;
-        printf("\nMasukkan ID lagu yang ingin dihapus: ");
-        STARTINPUT();
-        rep = WordToInt(GetWord());
-        int n = rep;
         n--;
-        printf("\n");
 
         if ((id < 0) || (id >= ListPL.playlist_length)){
-            printf("Tidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", id);
+            printf("Tidak ada playlist dengan playlist ID %d. Silakan coba lagi.\n", id + 1);
         } else{
             int x = LengthOfPlaylist(ListPL.playlist[id]);
             NamaPlaylist *P = &(ListPL.playlist[id]);
             if (n < 0 || n >= x){
-                printf("Tidak ada lagu dengan urutan %d di playlist \"", n);
+                printf("Tidak ada lagu dengan urutan %d di playlist \"", n + 1);
                 PrintWord((*P).playlist_nama);
                 printf("\". Silakan coba lagi.\n");
 
@@ -323,7 +309,6 @@ void PLAYLISTREMOVE(){
         printf("Anda belum masuk ke dalam program...\n");
     }
 
-    printf("\n");
     CONSOLE();
 
 }
@@ -346,11 +331,12 @@ void PLAYLISTDELETE(){
             STARTINPUT();
             ans = WordToInt(GetWord());
             ans--;
+            printf("\n");
 
             int n = ListPL.playlist_length;
             Word temp = ListPL.playlist[ans].playlist_nama;
             if (ans < 0 || ans >= n){
-                printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", ans + 1);
+                printf("\nTidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", ans + 1);
             } else{
                 FreePlaylist(&ListPL, &(ListPL.playlist[ans]));
                 printf("Playlist ID %d dengan judul \"", ans + 1);
@@ -364,6 +350,5 @@ void PLAYLISTDELETE(){
         printf("Anda belum masuk ke dalam program...\n");
     }
 
-    printf("\n");
     CONSOLE();
 }

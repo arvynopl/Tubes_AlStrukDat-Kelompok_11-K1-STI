@@ -50,5 +50,6 @@ void DeleteLastPlaylist(NamaPlaylist* L, Lagu* val);
 NamaPlaylist ConcatPlaylist(NamaPlaylist L1, NamaPlaylist L2);
 /* Mengeluarkan output berupa nama playlist dan lagu yang ada di dalamnya */
 void PrintPlaylist(NamaPlaylist L);
+boolean CheckLaguPlaylist(NamaPlaylist L, Lagu val);
 
 #endif

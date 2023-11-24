@@ -20,6 +20,7 @@ void STARTWORD(FILE *input);
         currentChar karakter pertama sesudah karakter terakhir kata */
 
 void STARTINPUT();
+void STARTCOMMAND();
 /*  I.S. : currentChar sembarang
     F.S. : EndWord = true, dan currentChar = MARK;
         atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
@@ -82,6 +83,7 @@ Word IntToWord(int n);
 /*  Mengubah integer menjadi tipe data Word */
 
 void ConcatWord(Word *kata1, Word kata2);
+void ConcatWordNoSpace(Word *kata1, Word kata2);
 /* Menyambungkan kata kedua ke dalam kata pertama
    I.S. sembarang
    F.S. kata2 disambung ke kata pertama */
@@ -91,5 +93,7 @@ Word ToLower(Word kata);
 
 Word ToUpper(Word kata);
 // /* Mengubah kata yang merupakan huruf kecil menjadi huruf kapital */
+
+boolean CheckValidInput(Word kata);
 
 #endif

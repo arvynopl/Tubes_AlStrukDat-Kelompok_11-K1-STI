@@ -24,6 +24,10 @@ int LengthMapAlbum(Penyanyi P);
 boolean IsMemberMapLagu(Album A, Key K);
 /* Mengembalikan true jika Key K adalah member dari Penyanyi P */
 boolean IsMemberMapAlbum(Penyanyi P, Key K);
+boolean CheckPenyanyi(ListPenyanyi LP, Word NamaPenyanyi);
+boolean CheckAlbum(Penyanyi P, Word NamaAlbum);
+boolean CheckLagu(Album A, Word NamaLagu);
+
 
 /* ### Operator Dasar Map ### */
 /* Mendapatkan indeks sebuah Album pada Penyanyi */

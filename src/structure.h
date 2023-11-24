@@ -19,8 +19,7 @@
 #define FEED '\f'
 #define BACKSPACE '\b'
 
-typedef struct
-{
+typedef struct kata{
    char TabWord[MaxEl]; /* Container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
@@ -79,7 +78,7 @@ typedef struct tPlaylist {
     Lagu lagu_playlist;
     Address next;
 } LaguPlaylist;
-typedef struct {
+typedef struct namaplaylist {
     Word playlist_nama;
     Address list;
 } NamaPlaylist;
@@ -122,6 +121,8 @@ struct lagu currSong;
 struct queue Queue;
 struct stack Histori;
 struct listplaylist ListPL;
+struct kata currPL;
+boolean IsON;
 
 /* ### Default State ### */
 
