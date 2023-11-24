@@ -39,6 +39,18 @@ void STARTINPUT(){
     }
 }
 
+void STARTCOMMAND(){
+    currentWord = ToKata("");
+    START(stdin);
+    IgnoreSeparators();
+    if (currentChar == COLON || currentChar == MARK){
+        endWord = true;
+    } else{
+        endWord = false;
+        CopyWordNoSpace();
+    }
+}
+
 void ADVWORD(){
     IgnoreSeparators();
     if (IsEOP()){
@@ -80,13 +92,13 @@ void ADVWORDNOSPACE(){
 }
 
 void ADVINPUT(){
+    currentWord = ToKata("");
     IgnoreSeparators();
-    if (currentChar == MARK){
+    if (IsEOP() || currentChar == COLON){
         endWord = true;
-    }
-    else{
+    } else{
         endWord = false;
-        CopyWord();
+        CopyWordNoSpace();
         IgnoreSeparators();
     }
 }
@@ -205,7 +217,14 @@ void ConcatWord(Word *kata1, Word kata2){
     for (int i = 0; i < kata2.Length; i++){
         (*kata1).TabWord[(*kata1).Length + i] = kata2.TabWord[i];
     }
-    (*kata1).Length = (*kata1).Length + kata2.Length;
+    (*kata1).Length += kata2.Length;
+}
+
+void ConcatWordNoSpace(Word *kata1, Word kata2){
+    for (int i = 0; i < kata2.Length; i++){
+        (*kata1).TabWord[(*kata1).Length + i] = kata2.TabWord[i];
+    }
+    (*kata1).Length += kata2.Length;
 }
 
 Word IntToWord(int n) {
@@ -251,4 +270,18 @@ Word ToUpper(Word kata){
         }
     }
     return upper;
+}
+
+boolean CheckValidInput(Word kata){
+    int ctr = 0;
+    for (int i = 0; i < kata.Length; i++){
+        if (kata.TabWord[i] != ' '){
+            ctr++;
+        }
+
+        if (ctr == 3){
+            return true;
+        } 
+    }
+    return false;
 }

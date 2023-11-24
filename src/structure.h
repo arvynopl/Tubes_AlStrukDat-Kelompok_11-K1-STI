@@ -3,6 +3,7 @@
 #include "boolean.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 #define Nil 0
 #define MaxEl 100
@@ -19,8 +20,7 @@
 #define FEED '\f'
 #define BACKSPACE '\b'
 
-typedef struct
-{
+typedef struct kata{
    char TabWord[MaxEl]; /* Container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
@@ -32,6 +32,7 @@ typedef int Key;
 typedef struct lagu {
     Word lagu_nama;
     int album_id;
+    int penyanyi_id;
 } Lagu;
 /* ### Akses Elemen Lagu ### */
 #define LAGU_NAMA(L, i, j, k) (L).penyanyi[i].album_penyanyi[j].lagu_album[k].lagu_nama
@@ -78,7 +79,7 @@ typedef struct tPlaylist {
     Lagu lagu_playlist;
     Address next;
 } LaguPlaylist;
-typedef struct {
+typedef struct namaplaylist {
     Word playlist_nama;
     Address list;
 } NamaPlaylist;
@@ -121,6 +122,8 @@ struct lagu currSong;
 struct queue Queue;
 struct stack Histori;
 struct listplaylist ListPL;
+struct kata currPL;
+boolean IsON;
 
 /* ### Default State ### */
 

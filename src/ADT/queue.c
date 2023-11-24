@@ -7,16 +7,16 @@ boolean IsEmptyQueue(QueueLagu Q){
 }
 
 boolean IsFullQueue(QueueLagu Q){
-    return((Q.idxHead == Q.idxTail + 1) || (Q.idxHead == 0 && Q.idxTail == MaxEl - 1));
+    return ((Q.idxHead == Q.idxTail + 1) || (Q.idxHead == 0 && Q.idxTail == MaxEl - 1));
 }
 
 int LengthOfQueue(QueueLagu Q){
     if (IsEmptyQueue(Q)){
         return 0;
     } else if (Q.idxTail >= Q.idxHead){
-        return(Q.idxTail - Q.idxHead + 1);
+        return (Q.idxTail - Q.idxHead + 1);
     } else if (Q.idxTail < Q.idxHead){
-        return((MaxEl - Q.idxHead + 1) + (Q.idxTail + 1));
+        return ((MaxEl - Q.idxHead + 1) + (Q.idxTail + 1));
     }
 }
 
@@ -58,6 +58,8 @@ Lagu Dequeue(QueueLagu* Q){
         return X;
     } else {
         Lagu deflagu;
+        deflagu.album_id = IDX_UNDEF;
+        deflagu.penyanyi_id = IDX_UNDEF;
         deflagu.lagu_nama.TabWord[0] = STR_UNDEF;
         deflagu.lagu_nama.Length = 0;
         return deflagu;
@@ -65,9 +67,7 @@ Lagu Dequeue(QueueLagu* Q){
 }
 
 void PrintQueue(QueueLagu Q){
-    if (IsEmptyQueue(Q)){
-        printf("[]\n");
-    } else{
+    if (!IsEmptyQueue(Q)){
         int j = 1;
         for (int i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
             printf("%d. ", j);
@@ -79,4 +79,5 @@ void PrintQueue(QueueLagu Q){
             }
         }
     }
+    printf("\n");
 }
