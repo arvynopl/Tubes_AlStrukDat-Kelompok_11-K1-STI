@@ -24,4 +24,6 @@ void FreePlaylist(ListPlaylist* P, NamaPlaylist* X);
 
 void PrintListPlaylist(ListPlaylist X);
 
+void PrintListPlaylist(ListPlaylist X);
+
 #endif
