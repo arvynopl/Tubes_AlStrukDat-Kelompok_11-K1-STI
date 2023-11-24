@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "../ADT/listdinamis.h"
-#include "../structure.h"
 
 int main()
 {
@@ -20,7 +19,7 @@ int main()
     PopPlaylist(&test, &isi2);
     PrintListPlaylist(test);
 
-    printf("Ini playlist yang dipilih : \n");
+    printf("Playlist yang dipilih : \n");
     GetPlaylist(test, 1);
 
     Address q = 321;
@@ -30,10 +29,13 @@ int main()
     PrintListPlaylist(test);
 
     ResizeBiggerListPlaylist(&test);
+    printf("%d\n", test.playlist_size);
 
     ResizeSmallerListPlaylist(&test);
+    printf("%d\n", test.playlist_size);
 
     FreeListPlaylist(&test);
 
     FreePlaylist(&test, &isi3);
+    printf("%d\n", test.playlist_length);
 }

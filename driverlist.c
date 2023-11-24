@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "../ADT/list.h"
-#include "../structure.h"
 
 int main()
 {
