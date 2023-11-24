@@ -53,7 +53,7 @@ void QUITPROG();
 void HELP();
 
 /* Command <INVALIDCOMMAND> */
-boolean INVALIDCOMMAND(Word input, Word displayAll, Word start, Word load, Word help, Word listDefault, Word listPlaylist, Word playSong, Word playPlaylist, Word queueSong, Word queuePlaylist, Word queueSwap, Word queueRemove, Word queueClear, Word songNext, Word songPrevious, Word playlistCreate, Word playlistAddSong, Word playlistAddAlbum, Word playlistSwap, Word playlistRemove, Word playlistDelete, Word status, Word save, Word quit);
+boolean INVALIDCOMMAND(Word input, Word displayAll, Word start, Word load, Word help, Word listDefault, Word listPlaylist, Word playSong, Word playPlaylist, Word queueSong, Word queuePlaylist, Word queueSwap, Word queueRemove, Word queueClear, Word songNext, Word songPrevious, Word playlistCreate, Word playlistAddSong, Word playlistAddAlbum, Word playlistSwap, Word playlistRemove, Word playlistDelete, Word playlistEnhance, Word status, Word save, Word quit);
 
 /* ### FUNGSI TAMBAHAN ### */
 /* Fungsi cek isi struktur data */
