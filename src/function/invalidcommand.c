@@ -1,6 +1,6 @@
 #include "function.h"
 
-boolean INVALIDCOMMAND(Word input, Word displayAll, Word start, Word load, Word help, Word listDefault, Word listPlaylist, Word playSong, Word playPlaylist, Word queueSong, Word queuePlaylist, Word queueSwap, Word queueRemove, Word queueClear, Word songNext, Word songPrevious, Word playlistCreate, Word playlistAddSong, Word playlistAddAlbum, Word playlistSwap, Word playlistRemove, Word playlistDelete, Word status, Word save, Word quit){
+boolean INVALIDCOMMAND(Word input, Word displayAll, Word start, Word load, Word help, Word listDefault, Word listPlaylist, Word playSong, Word playPlaylist, Word queueSong, Word queuePlaylist, Word queueSwap, Word queueRemove, Word queueClear, Word songNext, Word songPrevious, Word playlistCreate, Word playlistAddSong, Word playlistAddAlbum, Word playlistSwap, Word playlistRemove, Word playlistDelete, Word playlistEnhance, Word status, Word save, Word quit){
     if(IsON){
         if(WordCompare(input,start)){
             printf("Command tidak bisa dieksekusi!\n");
@@ -62,6 +62,9 @@ boolean INVALIDCOMMAND(Word input, Word displayAll, Word start, Word load, Word 
             return false;
         }
         else if(WordCompare(input,playlistDelete)){
+            return false;
+        }
+        else if(WordCompare(input,playlistEnhance)){
             return false;
         }
         else if(WordCompare(input,status)){
@@ -156,6 +159,10 @@ boolean INVALIDCOMMAND(Word input, Word displayAll, Word start, Word load, Word 
             return true;
         }
         else if(WordCompare(input,playlistDelete)){
+            printf("Command tidak bisa dieksekusi!\n");
+            return true;
+        }
+        else if(WordCompare(input,playlistEnhance)){
             printf("Command tidak bisa dieksekusi!\n");
             return true;
         }

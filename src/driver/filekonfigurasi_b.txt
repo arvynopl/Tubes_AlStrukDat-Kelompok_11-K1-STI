@@ -1,4 +1,4 @@
-5
+2
 2 BLACKPINK
 4 BORN PINK
 Pink Venom
@@ -20,51 +20,12 @@ Old Yellow Bricks
 My Propeller
 Crying Lightning
 Secret Door
-Secret Door
+Pretty Visitors
 3 AM
 Do I Wanna Know?
 R U Mine?
 Arabella
-3 Taylor Swift
-4 Lover
-ME!
-You Need To Calm Down
-Lover
-The Man
-4 Fearless
-Love Story
-You Belong with Me
-White Horse
-Fifteen
-4 Red
-We Are Never Ever Getting Back Together
-Red
-I Knew You Were Trouble
-All Too Well
-3 Adele
-3 19
-Chasing Pavements
-Hometown Glory
-Make You Feel My Love
-3 21
-Rolling in the Deep
-Someone Like You
-Set Fire to the Rain
-3 25
-Hello
-When We Were Young
-Water Under the Bridge
-3 Ed Sheeran
-2 +
-The A Team
-Give Me Love
-2 x
-Sing
-Thinking Out Loud
-2 =
-Bad Habits
-Shivers
--
+Arctic Monkeys;AM;R U Mine?
 5
 BLACKPINK;BORN PINK;Typa Girl
 BLACKPINK;THE ALBUM;How You Like That

@@ -43,7 +43,7 @@ void QUEUESONG(){
                 idlagu--;
                 printf("\n");
 
-                if (idlagu < 0 || idlagu > LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length){
+                if (idlagu >= 0 && idlagu < LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_length){
                     Enqueue(&Queue, LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idlagu]);
                     printf("Berhasil menambahkan lagu \"");
                     PrintWord(LP.penyanyi[idpenyanyi].album_penyanyi[idalbum].lagu_album[idlagu].lagu_nama);

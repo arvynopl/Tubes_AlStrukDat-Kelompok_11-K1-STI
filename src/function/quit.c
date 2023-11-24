@@ -7,7 +7,7 @@ void QUITPROG(){
         STARTINPUT();
         ans = ToUpper(GetWord());
 
-        if ((ans.TabWord[0] == 'Y') && (ans.Length = 1)){
+        if ((ans.TabWord[0] == 'Y') && (ans.Length == 1)){
             Word ans;
             printf("\nMasukkan nama file sebagai lokasi penyimpanan data: ");
             STARTINPUT();
@@ -24,7 +24,7 @@ void QUITPROG(){
             IsON = false;
             printf("Kamu keluar dari WayangWave.\n");
             exit(0);
-        } else if ((ans.TabWord[0] == 'N') && (ans.Length = 1)){
+        } else if ((ans.TabWord[0] == 'N') && (ans.Length == 1)){
             IsON = false;
             printf("Kamu keluar dari WayangWave.\n");
             exit(0);
